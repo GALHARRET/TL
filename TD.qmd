@@ -1,0 +1,58 @@
+# TD
+
+## Exercice 1 :(proposé par M. Cataneo)
+
+Voici 16 images d’animaux. Il vous a été demandé d’en faire des groupes.
+
+![Images à classer](exoTL.png)
+
+Les résultats sont disponibles dans le fichier suivant :
+
+[TL_animaux](TL_animaux.xlsx)
+
+1. Dessiner le stress normalisé en fonction du nombre de dimensions retenues dans la MDS.
+
+2. Inclure les ellipses de confiance à 95%. Interpréter les résultats.
+
+3. Déterminer la partition consensuelle. A-t-on intérêt à constituer des sous groupes pour améliorer cette partition consensuelle ?
+
+## Exercice 2 :
+
+Ces données sont issues d'un cours de sensométrie de François Husson [cours Husson](https://husson.github.io/)
+
+-   59 sujets ont réalisé un tri libre de 12 jus d'orange [TL](orange_TL.csv).
+
+-   48 sujets ont réalisé un liking de ces 12 jus d'orange [Liking](orange_liking.csv).
+
+![Consignes](notation_hedonique.png)
+
+On utilisera les codes vus dans le cours pour répondre aux différentes questions ci-dessous. On choisira d'utiliser une MDS métrique et le stress normalisé comme fonction de coût.
+
+1.  Importer le fichier orange_TL.csv dans R. Combien de sujets et de produits font parti de l’étude.
+
+2.  Faire une analyse descriptive du nombre de groupes dans les partitions données par les sujets de l’étude (moyenne, écart type, boxplot).
+
+3.  Dessiner le stress normalisé en fonction du nombre de dimensions retenues dans la MDS.
+
+4.  Dans la suite, on retiendra 2 dimensions. Dessiner la projection des 12 jus d’orange sur le plan factoriel correspondant. On inclura les ellipses de confiance à 95%. Interpréter les résultats.
+
+5.  Déterminer la partition consensuelle.
+
+6.  Réaliser une classification des individus pour améliorer le consensus entre les individus dans les sous groupes obtenus. Quel est le gain obtenu avec 2 groupes ? 3 groupes ?
+
+On ajoute une matrice de Liking. Importer le fichier orange_liking.csv.
+
+7.  Analyse descriptive des données de Liking :
+
+a.  Donner les moyennes des juges, des jus d’oranges.
+
+b.  De même donner les dispersions des notes selon les juges et selon les produits.
+
+c.  Dessiner les boxplots des notes attribuées par les juges. Peut on en penser qu’il y a un effet juge ? Comment pourrait-on le tester ?
+
+
+8.  Effectuer les régressions des notes des juges sur les 2 composantes de la MDS réalisée à la question 4. On stockera le résultat dans une matrice.
+
+9.  Dessiner la carte des préférences obtenue. On interprètera les résultats.
+
+

@@ -1,0 +1,363 @@
+# Tri libre
+
+```{r echo=F}
+suppressPackageStartupMessages(library(FreeSortR))
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(flextable))
+suppressPackageStartupMessages(library(readxl))
+MdsDiss= function (MatDissimil, ndim = 2, metric = TRUE, ties = "primary", 
+          itmax = 5000, eps = 1e-06) 
+{
+  res <- smacof::smacofSym(MatDissimil, ndim = ndim, type = "interval", 
+                   verbose = FALSE, itmax = itmax, eps = eps)
+  Config <- scale(res$conf, center = TRUE, scale = FALSE)
+  W <- Config %*% t(Config)
+  bid <- svd(W)
+  if(ndim==1){
+    Config <- as.matrix(bid$u[, 1:ndim]) %*% sqrt(diag(as.matrix(bid$d[1:ndim])))}else{
+      Config <- bid$u[, 1:ndim] %*% sqrt(diag(bid$d[1:ndim])) 
+    }
+  if (metric == FALSE) {
+    res <- smacof::smacofSym(MatDissimil, ndim = ndim, type = "ordinal", 
+                     ties = ties, init = Config, verbose = FALSE, itmax = itmax, 
+                     eps = eps)
+    Config <- scale(res$conf, center = TRUE, scale = FALSE)
+    W <- Config %*% t(Config)
+    bid <- svd(W)
+    bid$d[1:ndim]/sum(bid$d)
+    if(ndim==1){
+      Config <- as.matrix(bid$u[, 1:ndim]) %*% sqrt(diag(as.matrix(bid$d[1:ndim])))}else{
+        Config <- bid$u[, 1:ndim] %*% sqrt(diag(bid$d[1:ndim])) 
+      }
+  }
+  Percent <- bid$d/sum(bid$d)
+  Stress <- sqrt(sum((res$dhat - res$confdist)^2)/sum(res$confdist^2))
+  res <- list(Config = Config, Percent = Percent, Stress = Stress)
+  return(res)
+}
+
+MdsSort=function (Part, ndim = 2, nboot = 0, metric = FALSE, ties = "primary", 
+          itmax = 5000, eps = 1e-06) 
+{
+  if (!class(Part) == "SortingPartition") {
+    return("This is not an object of class SortingPartition")
+  }
+  else {
+    nstimuli <- Part@nstimuli
+    nsubjects <- Part@nsubjects
+    ListDissim <- Dissimil(Part)
+    MatDissim <- apply(simplify2array(ListDissim), c(1, 2), 
+                       "sum")
+    res <- MdsDiss(MatDissim, ndim = ndim, metric = metric, 
+                   ties = ties, itmax, eps)
+    Config <- res$Config
+    rownames(Config) <- Part@LabStim
+    colnames(Config) <- paste(rep("Dim"), 1:ndim)
+    Stress <- res$Stress
+    Percent <- res$Percent[1:ndim]
+    if (nboot > 0) {
+      ResBoot <- vector("list", nstimuli)
+      for (b in 1:nboot) {
+        panel <- sample(1:nsubjects, replace = TRUE)
+        MatDistTotPanel = matrix(0, nstimuli, nstimuli)
+        for (k in 1:nsubjects) {
+          MatDistTotPanel <- MatDistTotPanel + ListDissim[[panel[k]]]
+        }
+        if (metric == TRUE) {
+          res <- smacof::smacofSym(MatDistTotPanel, ndim = ndim, 
+                           type = "ratio", ties = "primary", init = Config, 
+                           verbose = F, itmax = itmax, eps = eps)
+        }
+        else {
+          res <- smacof::smacofSym(MatDistTotPanel, ndim = ndim, 
+                           type = "ordinal", ties = "primary", init = Config, 
+                           verbose = F, itmax = itmax, eps = eps)
+        }
+        ConfigP <- res$conf
+        res <- procrustes(Config, ConfigP)
+        for (i in 1:nstimuli) {
+          ResBoot[[i]] <- rbind(ResBoot[[i]], res$Yrot[i, 
+          ])
+        }
+      }
+      return(new("SortingMds", nstimuli = nstimuli, nsubjects = nsubjects, 
+                 LabStim = Part@LabStim, LabSubj = Part@LabSubj, 
+                 ndim = ndim, Config = Config, Percent = Percent, 
+                 Stress = Stress, ResBoot = ResBoot))
+    }
+    else {
+      ResBoot <- NULL
+      return(new("SortingMds", nstimuli = nstimuli, nsubjects = nsubjects, 
+                 LabStim = Part@LabStim, LabSubj = Part@LabSubj, 
+                 ndim = ndim, Config = Config, Percent = Percent, 
+                 Stress = Stress))
+    }
+  }
+}
+
+plot_MDS=function(resMds,j,k){
+  N=resMds@nstimuli
+  couleur=rainbow(N)
+  df=as.data.frame(resMds@ResBoot[[1]])[,c(j,k)]
+  colnames(df)=c("x","y")
+  p<-ggplot(df,aes(x=x,y=y))+stat_ellipse(color=couleur[1])
+  
+  for(i in 2:N){
+    df=as.data.frame(resMds@ResBoot[[i]])[,c(j,k)]
+    colnames(df)=c("x","y")
+    p<-p+stat_ellipse(data=df,aes(x=x,y=y),color=couleur[i])
+  }
+  config2<-data.frame(matrix(NA,nrow=nrow(resMds@Config),ncol=2))
+  rownames(config2)=rownames(resMds@Config)
+  for(i in 1:N){
+    config2[i,]=t(apply(resMds@ResBoot[[i]][,c(j,k)],2,mean))
+  }
+  colnames(config2)=c("Dim1","Dim2")
+  Pourcentage=round(resMds@Percent[c(j,k)]*100,1)
+  p<-p+geom_text(data=config2,aes(x=Dim1,y=Dim2,
+                                  label=rownames(config2)),color=couleur)+
+    theme_minimal()+
+    xlab(paste("Dim",j,Pourcentage[1],"%",sep=" "))+
+    ylab(paste("Dim",k,Pourcentage[2],"%",sep=" "))+
+    ggtitle(paste("MDS, Stress=",round(resMds@Stress,3),sep=" "))+
+    theme(legend.position = "n")
+  return(p)
+}
+```
+
+Télécharger le fichier [script_TL](script_TL.R) il servira pour la plupart des manipulations sur R.
+
+On va étudier un premier exemple de tri libre de 16 arômes proposés à 31 sujets.
+
+Cette base de données est disponible dans le package FreeSorteR. Dans la suite cette base de données sera désignée par df (dataframe). Les noms des aromes en FR sont disponibles dans ce fichier [nom_aromes](nom_aromes.xlsx)
+
+```{r}
+data("AromaSort")
+df=AromaSort
+nom_aromes <- read_excel("nom_aromes.xlsx", 
+     col_names = FALSE)
+colnames(nom_aromes)<-c("EN","FR")
+rownames(df)<-nom_aromes$FR
+```
+
+On nommera les bases de données df pour plus de facilité pour la suite :
+
+```{r echo=F}
+ft_1 <- flextable(df%>% rownames_to_column("column name"))
+ft_1 <- set_table_properties(ft_1, 
+                             opts_html = list(
+                               extra_css = ".tabwid tbody tr > :first-child {position: sticky;z-index: 1;left: 0;background: #ddd;}",
+                               scroll = list(height="500px")))
+ft_1
+```
+
+```{r}
+tl<-SortingPartition(df)
+DescriptionPartition(tl,subject=1)
+```
+
+## Matrice de dissimilarités individuelle
+
+On note $D^{(n)}=(d^{(n)}_{i,j})_{i,j}$ la matrice de dissimilarités obtenue à partir de la partition du $n$-ième individu. On a
+
+-   $d^{(n)}_{i,j}=0$ si $i,j$ sont dans la même partition,
+
+-   $d^{(n)}_{i,j}=1$ sinon.
+
+***Remarque*** La matrice $D^{(n)}$ est une matrice symétrique dont la diagonale est nulle.
+
+### Exemple individu 1 :
+
+```{r}
+ListDiss<-Dissimil(tl)
+T1=as.data.frame(ListDiss[[1]])
+rownames(T1)=tl@LabStim
+colnames(T1)=tl@LabStim
+```
+
+Ceci donne la matrice de dissimilarité pour l'individu
+
+```{r echo=FALSE}
+ft_1 <- flextable(T1%>% 
+                    rownames_to_column("name"))
+ft_1 <- set_table_properties(ft_1, 
+                             opts_html = list(
+                               extra_css = ".tabwid tbody tr > :first-child {position: sticky;z-index: 1;left: 0;background: #ddd;}",
+                               scroll = list(height="500px")))
+ft_1
+```
+
+## Matrice de dissimilarités à l'échelle du panel
+
+-   On ajoute toutes les matrices de dissimilarités individuelles. On obtient la matrice $D$ de coefficients : $$\delta_{i,j}=\sum_{n=1}^N d^{(n)}_{i,j}$$
+
+-   Cette matrice est symétrique et sa diagonale est nulle.
+
+-   Tous les coefficients de cette matrice sont des entiers inférieurs ou égaux à $N$.
+
+### Retour sur l'exemple
+
+```{r}
+D<-DissTot(tl)
+rownames(D)=tl@LabStim
+```
+
+On obtient la matrice de dissimilarité totale :
+
+```{r echo=F}
+ft_1 <- flextable(D %>% as.data.frame() %>%
+                 rownames_to_column("name"))
+ft_1 <- set_table_properties(ft_1, 
+                             opts_html = list(
+                               extra_css = ".tabwid tbody tr > :first-child {position: sticky;z-index: 1;left: 0;background: #ddd;}",
+                               scroll = list(height="500px")))
+ft_1
+
+```
+
+## MDS (Multi Dimensionnal Scaling)
+
+On considère $N$ points $x_1,...,x_N$ dans un espace de dimension $P$ caractérisés par la matrice de dissimilarité $D=(\delta_{ij})_{1\leq i\leq j\leq N}$.
+
+***BUT*** représenter ces points dans un espace de dimension $k<P$ par $N$ points $y_1,...,y_N$ en conservant les proximités entre les points initiaux.
+
+Cela suppose :
+
+-   l'existence de variables latentes (ie qui permettent de résumer des dissimilarités entre produits)
+
+-   le choix d'un indice de qualité de la projection des dissimilarités dans l'espace latent ($\leadsto$ ***S : Fonction de coût appelée Stress***). Le but sera de trouver $y_1,...,y_N$ tels que $S(y_1,...,y_N)$ est minimale.
+
+### MDS Métrique
+
+Dans ce cas le stress est défini par $$
+S(y_1,...,y_N)=\sum_{i< j} \left( \delta_{ij}-\Vert y_i-y_j\Vert\right)^2
+$$ Dans ce cas on veut représenter les points initiaux en conservant la valeur absolue et relative de leurs dissimilarités.
+
+### MDS non Métrique
+
+Dans ce cas le stress est défini par $$
+S(y_1,...,y_N)=\sum_{i< j} \left( \delta_{ij}-f(\Vert y_i-y_j\Vert)\right)^2
+$$ où $f$ est une fonction monotone de $(i,j)$. La fonction $f$ s'adapte durant la phase d'optimisation.
+
+On veut préserver uniquement l'ordre entre les proximités des points initiaux.
+
+## Le stress normalisé
+
+La fonction de coût utilisé en pratique est une version normalisée du stress : 
+
+$$
+S_{norm}(y_1,...,y_N)=\displaystyle \frac{\sum_{i<j}(\delta_{i,j}-f(\Vert y_i-y_j\Vert))^2}{\sum_{i<j}\delta_{i,j}^2}
+$$
+
+où $f$ est l'identité pour la MDS métrique.
+
+## Choix du nombre de dimension du MDS
+
+Comme souvent en analyse de données, on peut utiliser la règle du coude pour déterminer le nombre de dimensions :
+
+```{r}
+stress<-rep(NA,6)
+# getStress donne le stress de Kruskal (ie normalisé)
+
+for(i in 1:6){
+  resMds<-MdsSort(tl,ndim=i,metric = T)
+  stress[i]<-getStress(resMds)  
+}
+
+plot(1:6,stress,type="b",pch=20,
+     xlab="Nombre de dimensions",
+     col="purple")
+```
+
+## Représentation obtenue
+
+```{r}
+ndim=3
+resMds<-MdsSort(tl,ndim=ndim,metric = T)
+config<-getConfig(resMds)
+config=as.data.frame(config)
+colnames(config)=paste("Dim",1:ndim,sep="")
+p1<-ggplot(config,aes(x=Dim1,y=Dim2,label=rownames(config)))+geom_text()+
+  ggtitle(paste("MDS, Stress=",round(resMds@Stress,3)))+
+  xlab(paste("Dim1",round(100*resMds@Percent[1],1),"%",sep=" "))+
+  ylab(paste("Dim2",round(100*resMds@Percent[2],1),"%",sep=" "))+
+  theme_minimal()
+  
+p2<-ggplot(config,aes(x=Dim2,y=Dim3,label=rownames(config)))+geom_text()+
+  ggtitle(paste("MDS, Stress=",round(resMds@Stress,3)))+
+  xlab(paste("Dim2",round(100*resMds@Percent[2],1),"%",sep=" "))+
+  ylab(paste("Dim3",round(100*resMds@Percent[3],1),"%",sep=" "))+
+  theme_minimal()
+library(gridExtra)
+grid.arrange(p1,p2,ncol=2)
+```
+
+## Ellipses de confiance
+
+-   On se pose la question de la stabilité de la configuration. D'autres individus proposeraient d'autres partitions $\leadsto$ autre configuration.
+
+-   Pseudo-individus à partir des individus de l'échantillon (Bootstrap) : on tire des individus avec remise dans l'échantillon et on construit la configuration obtenue (en général $B=500$ tirages).
+
+-   Construction d'ellipses de confiance à partir de ces $B$ configurations.
+
+
+```{r}
+resMds<-MdsSort(tl,ndim=ndim,metric = T,nboot=500)
+p1=plot_MDS(resMds,1,2)
+p2=plot_MDS(resMds,1,3)
+grid.arrange(p1,p2,ncol=2)
+```
+
+## Informations additionnelles
+
+On propose aux 31 sujets une liste de 36 descripteurs pour les 16 produits considérés. On obtient la table de contingence suivante :
+
+```{r echo=F}
+data("AromaTerms")
+ia=as.data.frame(AromaTerms)
+ft_1 <- flextable(ia%>% rownames_to_column("name"))
+ft_1 <- set_table_properties(ft_1, 
+                             opts_html = list(
+                               extra_css = ".tabwid tbody tr > :first-child {position: sticky;z-index: 1;left: 0;background: #ddd;}",
+                               scroll = list(height="500px")))
+ft_1
+```
+
+## Caractérisation des axes latents
+
+-   On effectue la régression de chacun des descripteurs sur les composantes de la MDS.
+
+-   Les coefficients de regression seront utilisés comme coordonnées dans les plans factoriels.
+
+***Exemple***
+
+Descripteur Acide :
+
+```{r}
+beta<-data.frame(matrix(NA,nrow=dim(ia)[2],ncol=dim(config)[2]))
+
+for(i in 1:dim(beta)[1]){
+  beta[i,]<-coef(lm(AromaTerms[,i]~as.matrix(config)))[-1]
+}
+rownames(beta)<-colnames(ia)
+colnames(beta)[1:ndim]<-paste("Dim",1:ndim,sep="")
+```
+
+On obtient :
+
+```{r echo=F}
+flextable(beta%>% rownames_to_column("name"))
+```
+
+## Représentation graphique
+
+```{r}
+ggplot(beta, aes(x=1.05*Dim1, y=1.05*Dim2,label=rownames(beta))) +
+  geom_text() +
+  geom_segment(data=beta,aes(x=0, y=0, xend=Dim1, yend=Dim2), arrow = arrow(length=unit(.1, 'cm')))+
+  theme_minimal()+
+  #theme(element_text(size=10))+
+  xlab(paste("Dim1=",round(resMds@Percent[1]*100,3),"%"))+
+  ylab(paste("Dim2=",round(resMds@Percent[2]*100,3),"%"))+
+  ggtitle(paste("MDS, stress=",round(resMds@Stress,3)))
+```

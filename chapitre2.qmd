@@ -1,0 +1,308 @@
+```{r echo=F}
+suppressPackageStartupMessages(library(FreeSortR))
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(flextable))
+suppressPackageStartupMessages(library(gridExtra))
+MdsDiss= function (MatDissimil, ndim = 2, metric = TRUE, ties = "primary", 
+          itmax = 5000, eps = 1e-06) 
+{
+  res <- smacof::smacofSym(MatDissimil, ndim = ndim, type = "interval", 
+                   verbose = FALSE, itmax = itmax, eps = eps)
+  Config <- scale(res$conf, center = TRUE, scale = FALSE)
+  W <- Config %*% t(Config)
+  bid <- svd(W)
+  if(ndim==1){
+    Config <- as.matrix(bid$u[, 1:ndim]) %*% sqrt(diag(as.matrix(bid$d[1:ndim])))}else{
+      Config <- bid$u[, 1:ndim] %*% sqrt(diag(bid$d[1:ndim])) 
+    }
+  if (metric == FALSE) {
+    res <- smacof::smacofSym(MatDissimil, ndim = ndim, type = "ordinal", 
+                     ties = ties, init = Config, verbose = FALSE, itmax = itmax, 
+                     eps = eps)
+    Config <- scale(res$conf, center = TRUE, scale = FALSE)
+    W <- Config %*% t(Config)
+    bid <- svd(W)
+    bid$d[1:ndim]/sum(bid$d)
+    if(ndim==1){
+      Config <- as.matrix(bid$u[, 1:ndim]) %*% sqrt(diag(as.matrix(bid$d[1:ndim])))}else{
+        Config <- bid$u[, 1:ndim] %*% sqrt(diag(bid$d[1:ndim])) 
+      }
+  }
+  Percent <- bid$d/sum(bid$d)
+  Stress <- sqrt(sum((res$dhat - res$confdist)^2)/sum(res$confdist^2))
+  res <- list(Config = Config, Percent = Percent, Stress = Stress)
+  return(res)
+}
+
+MdsSort=function (Part, ndim = 2, nboot = 0, metric = FALSE, ties = "primary", 
+          itmax = 5000, eps = 1e-06) 
+{
+  if (!class(Part) == "SortingPartition") {
+    return("This is not an object of class SortingPartition")
+  }
+  else {
+    nstimuli <- Part@nstimuli
+    nsubjects <- Part@nsubjects
+    ListDissim <- Dissimil(Part)
+    MatDissim <- apply(simplify2array(ListDissim), c(1, 2), 
+                       "sum")
+    res <- MdsDiss(MatDissim, ndim = ndim, metric = metric, 
+                   ties = ties, itmax, eps)
+    Config <- res$Config
+    rownames(Config) <- Part@LabStim
+    colnames(Config) <- paste(rep("Dim"), 1:ndim)
+    Stress <- res$Stress
+    Percent <- res$Percent[1:ndim]
+    if (nboot > 0) {
+      ResBoot <- vector("list", nstimuli)
+      for (b in 1:nboot) {
+        panel <- sample(1:nsubjects, replace = TRUE)
+        MatDistTotPanel = matrix(0, nstimuli, nstimuli)
+        for (k in 1:nsubjects) {
+          MatDistTotPanel <- MatDistTotPanel + ListDissim[[panel[k]]]
+        }
+        if (metric == TRUE) {
+          res <- smacof::smacofSym(MatDistTotPanel, ndim = ndim, 
+                           type = "ratio", ties = "primary", init = Config, 
+                           verbose = F, itmax = itmax, eps = eps)
+        }
+        else {
+          res <- smacof::smacofSym(MatDistTotPanel, ndim = ndim, 
+                           type = "ordinal", ties = "primary", init = Config, 
+                           verbose = F, itmax = itmax, eps = eps)
+        }
+        ConfigP <- res$conf
+        res <- procrustes(Config, ConfigP)
+        for (i in 1:nstimuli) {
+          ResBoot[[i]] <- rbind(ResBoot[[i]], res$Yrot[i, 
+          ])
+        }
+      }
+      return(new("SortingMds", nstimuli = nstimuli, nsubjects = nsubjects, 
+                 LabStim = Part@LabStim, LabSubj = Part@LabSubj, 
+                 ndim = ndim, Config = Config, Percent = Percent, 
+                 Stress = Stress, ResBoot = ResBoot))
+    }
+    else {
+      ResBoot <- NULL
+      return(new("SortingMds", nstimuli = nstimuli, nsubjects = nsubjects, 
+                 LabStim = Part@LabStim, LabSubj = Part@LabSubj, 
+                 ndim = ndim, Config = Config, Percent = Percent, 
+                 Stress = Stress))
+    }
+  }
+}
+
+plot_MDS=function(resMds,j,k){
+  N=resMds@nstimuli
+  couleur=rainbow(N)
+  df=as.data.frame(resMds@ResBoot[[1]])[,c(j,k)]
+  colnames(df)=c("x","y")
+  p<-ggplot(df,aes(x=x,y=y))+stat_ellipse(color=couleur[1])
+  
+  for(i in 2:N){
+    df=as.data.frame(resMds@ResBoot[[i]])[,c(j,k)]
+    colnames(df)=c("x","y")
+    p<-p+stat_ellipse(data=df,aes(x=x,y=y),color=couleur[i])
+  }
+  config2<-data.frame(matrix(NA,nrow=nrow(resMds@Config),ncol=2))
+  rownames(config2)=rownames(resMds@Config)
+  for(i in 1:N){
+    config2[i,]=t(apply(resMds@ResBoot[[i]][,c(j,k)],2,mean))
+  }
+  colnames(config2)=c("Dim1","Dim2")
+  Pourcentage=round(resMds@Percent[c(j,k)]*100,1)
+  p<-p+geom_text(data=config2,aes(x=Dim1,y=Dim2,
+                                  label=rownames(config2)),color=couleur)+
+    theme_minimal()+
+    xlab(paste("Dim",j,Pourcentage[1],"%",sep=" "))+
+    ylab(paste("Dim",k,Pourcentage[2],"%",sep=" "))+
+    ggtitle(paste("MDS, Stress=",round(resMds@Stress,3),sep=" "))+
+    theme(legend.position = "n")
+  return(p)
+}
+data("AromaSort")
+df=as.data.frame(AromaSort)
+tl<-SortingPartition(df)
+resMds=MdsSort(tl,ndim=3,metric=T)
+```
+
+# Partition consensuelle
+
+-   On cherche une partition qui soit la plus proche possible de l'ensemble des partitions données par les $N$ individus. On la nommera partition consensuelle.
+
+-   Cela nécessite de définir une notion de proximité entre partitions.
+
+## Mesure d'accord entre deux partitions
+
+On demande à 2 participants de partager en groupes 5 produits numérotés $\{1,2,3,4,5\}$ On obtient les deux partitions suivantes : $P_1=\{ \{1,2,3\},\{4,5\} \}$ et $P_2=\{ \{1,2\},\{3,4,5\} \}$. On va mesurer l'accord entre ces deux partitions en regardant si chaque paire de produits est groupé dans $P_1$ (Gr P1), séparé dans $P_1$ (sep P1). De même dans $P_2.$
+
+```{r echo=F}
+P1=c(1,1,1,2,2)
+P2=c(1,1,2,2,2)
+ex=as.data.frame(rbind(P1,P2))
+colnames(ex)=paste("Produit",1:5)
+x<-c()
+for(i in 1:(length(P1)-1)){
+  for(j in (i+1):length(P1)){
+    x<-c(x,sum(P1[i]==P1[j])+2*sum(P2[i]==P2[j]))
+  }
+}
+# Table de contingence
+tab<-data.frame(matrix(table(x),nrow=2))
+rownames(tab)<-c("Gr P1","Sep P1")
+colnames(tab)<-c("Gr P2","Sep P2")
+flextable(ex%>% rownames_to_column("name"))
+flextable(tab%>% rownames_to_column("name"))
+```
+
+-   Courcoux et al. (2014) définissent le Rand Index $RI(P_1,P_2)=\dfrac{a+d}{P(P-1)/2}$ où $a+d$ est le nombre d'accord entre $P_1,P_2$ (ie lorsqu'elles regroupent ou qu'elles séparent les deux produits).
+
+-   On a $0\leq RI(P_1,P_2) \leq 1$ (0 désaccord total et 1 accord total).
+
+La fonction ***RandIndex*** du package FreeSortR permet d'effectuer ce calcul :
+
+```{r echo=T}
+RandIndex(P1,P2)$Rand
+```
+
+## Inconvénient
+
+Il augmente en moyenne lorsque le nombre $N$ de sujets augmente.
+La solution est de remplacer $RI$  par 
+$$
+ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
+$$
+
+où $\overline{RI}$ est la moyenne du $RI$ pour 2 partitions dont le consensus n'est dû qu'au hasard.
+
+***Conséquences***
+
+1.  $ARI(P_1,P_2)=0$ lorsque le consensus n'est dû qu'au hasard,
+2.  $ARI(P_1,P_2)=1$ lorsque le consensus est parfait (ie les partitions sont identiques).
+
+```{r echo=T}
+RandIndex(P1,P2)$AdjustedRand
+```
+
+
+
+## Mesure de consensus basé sur $ARI$
+
+-   On cherche une partition $P$ telle que la moyenne des $ARI$ de chaque sujet avec cette partition est maximale c'est à dire $C_M(P)=\frac 1{N}\sum_{n=1}^N ARI(P,P_n)$ maximale.
+
+-   On procède de façon itérative en fixant le nombre $K$ de classes dans la partition consensuelle. On choisit la valeur de $K$ pour laquelle $C_M(P)$ est maximal.
+
+-   Cet algorithme est sensible au choix de la première partition. Plusieurs choix sont proposés dans ***FreeSorteR*** on choisira :
+
+```{r}
+cons=ConsensusPartition(tl,ngroups=0,type="fusion")
+```
+
+## Résultat pour l'exemple
+
+Partition en 7 classes avec $C_M(P)=0.308$
+
+```{r echo=F}
+flextable(cons$Consensus%>%
+            as.data.frame()%>%
+            rownames_to_column("name"))
+```
+
+## Représentation de la partition consensuelle sur le plan latent :
+
+```{r eval=T}
+config=getConfig(resMds)
+colnames(config)=paste("Dim",1:3,sep="")
+Consensus=as.factor(cons$Consensus)
+ggplot(config,aes(x=Dim1,y=Dim2,label=rownames(config),color=Consensus))+
+  geom_text()+
+  xlab(paste("Dim1=",round(resMds@Percent[1]*100,1),"%"))+
+  ylab(paste("Dim2=",round(resMds@Percent[2]*100,1),"%"))+
+  ggtitle(paste("MDS, stress=",round(resMds@Stress,3)))+
+  theme_minimal()+theme(legend.position = "none")
+```
+
+## Classification des sujets
+
+L'$ARI$ permet de définir une distance entre les sujets, 
+$$
+d_{ARI}(S_i,S_j)=\sqrt{1-ARI(P_i,P_j)}
+$$ 
+où le sujet $S_i$ propose la partition $P_i.$
+
+### CAH avec d_ARI
+
+On peut alors réaliser une classification ascendante hierarchique avec cette distance :
+
+
+```{r }
+i=j=1
+d_ARI<-function(df,i,j){
+  return(sqrt(1-RandIndex(df[,i],df[,j])$AdjustedRand))
+}
+N<-dim(df)[2]
+M<-matrix(NA,nrow=N,ncol=N)
+for(i in 1:N){
+  for(j in 1:N){
+    M[i,j]<-d_ARI(df,i,j)
+  }
+}
+
+dd <- as.dist(M)
+
+res<-hclust(dd,method="ward.D2")
+plot(res,hang=-1,ylim=c(0,1.5))
+```
+On choisit de former deux groupes d'individus :
+
+```{r}
+gr<-cutree(res,2)
+```
+
+Ces groupes sont déséquilibrés et constitués de 
+
+```{r}
+flextable(as.data.frame(table(gr)))
+```
+On peut ainsi mettre en évidence le consensus pour chacun de ces deux groupes :
+
+```{r}
+df1<-df[,gr==1]
+ndim=3
+tl1<-SortingPartition(df1)
+resMds1<-MdsSort(tl1,ndim=ndim)
+config1<-getConfig(resMds1)
+cons1<-ConsensusPartition(tl1,ngroups=0)
+config1=getConfig(resMds1)
+colnames(config1)=paste("Dim",1:ndim,sep="")
+Consensus1=as.factor(cons1$Consensus)
+p1=ggplot(config1,aes(x=Dim1,y=Dim2,label=rownames(config1),color=Consensus1))+
+  geom_text()+
+  xlab(paste("Dim1=",round(resMds1@Percent[1]*100,3),"%"))+
+  ylab(paste("Dim2=",round(resMds1@Percent[2]*100,3),"%"))+
+  labs(
+    title=paste("MDS, stress=",round(resMds1@Stress,3),", N=",sum(gr==1),sep=""),
+    subtitle = paste("Consensus=",round(cons1$Crit,3),", k gr=",max(cons1$Consensus)),sep="")+
+  theme_minimal()+theme(legend.position = "none")
+
+df1<-df[,gr==2]
+tl1<-SortingPartition(df1)
+resMds1<-MdsSort(tl1,ndim=ndim)
+config1<-getConfig(resMds1)
+cons1<-ConsensusPartition(tl1,ngroups=0)
+config1=getConfig(resMds1)
+colnames(config1)=paste("Dim",1:ndim,sep="")
+Consensus1=as.factor(cons1$Consensus)
+p2=ggplot(config1,aes(x=Dim1,y=Dim2,label=rownames(config1),color=Consensus1))+
+  geom_text()+
+  xlab(paste("Dim1=",round(resMds1@Percent[1]*100,3),"%"))+
+  ylab(paste("Dim2=",round(resMds1@Percent[2]*100,3),"%"))+
+  labs(
+    title=paste("MDS, stress=",round(resMds1@Stress,3),", N=",sum(gr==2),sep=""),
+    subtitle = paste("Consensus=",round(cons1$Crit,3),", k gr=",max(cons1$Consensus)),sep="")+
+  theme_minimal()+theme(legend.position = "none")
+grid.arrange(p1,p2,ncol=2)
+```
+
+

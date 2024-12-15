@@ -1,0 +1,252 @@
+[
+  {
+    "objectID": "chapitre1.html",
+    "href": "chapitre1.html",
+    "title": "2  Tri libre",
+    "section": "",
+    "text": "2.1 Matrice de dissimilarités individuelle\nOn note \\(D^{(n)}=(d^{(n)}_{i,j})_{i,j}\\) la matrice de dissimilarités obtenue à partir de la partition du \\(n\\)-ième individu. On a\nRemarque La matrice \\(D^{(n)}\\) est une matrice symétrique dont la diagonale est nulle.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Tri libre</span>"
+    ]
+  },
+  {
+    "objectID": "chapitre1.html#matrice-de-dissimilarités-individuelle",
+    "href": "chapitre1.html#matrice-de-dissimilarités-individuelle",
+    "title": "2  Tri libre",
+    "section": "",
+    "text": "\\(d^{(n)}_{i,j}=0\\) si \\(i,j\\) sont dans la même partition,\n\\(d^{(n)}_{i,j}=1\\) sinon.\n\n\n\n2.1.1 Exemple individu 1 :\n\n\nVoir le code R\nListDiss&lt;-Dissimil(tl)\nT1=as.data.frame(ListDiss[[1]])\nrownames(T1)=tl@LabStim\ncolnames(T1)=tl@LabStim\n\n\nCeci donne la matrice de dissimilarité pour l’individu\n\n\nnameCitronpamplemousseananaspoiremielbeurrepain grillénoisettes grilléesfraiseframboisecerisecassispoivre vertfumépoivreréglisseCitron0010111001111111pamplemousse0010111001111111ananas1101011111110111poire0010111001111111miel1101011111110111beurre1111100111111111pain grillé1111100111111111noisettes grillées0010111001111111fraise0010111001111111framboise1111111110001111cerise1111111110001111cassis1111111110001111poivre vert1101011111110111fumé1111111111111000poivre1111111111111000réglisse1111111111111000",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Tri libre</span>"
+    ]
+  },
+  {
+    "objectID": "chapitre1.html#matrice-de-dissimilarités-à-léchelle-du-panel",
+    "href": "chapitre1.html#matrice-de-dissimilarités-à-léchelle-du-panel",
+    "title": "2  Tri libre",
+    "section": "2.2 Matrice de dissimilarités à l’échelle du panel",
+    "text": "2.2 Matrice de dissimilarités à l’échelle du panel\n\nOn ajoute toutes les matrices de dissimilarités individuelles. On obtient la matrice \\(D\\) de coefficients : \\[\\delta_{i,j}=\\sum_{n=1}^N d^{(n)}_{i,j}\\]\nCette matrice est symétrique et sa diagonale est nulle.\nTous les coefficients de cette matrice sont des entiers inférieurs ou égaux à \\(N\\).\n\n\n2.2.1 Retour sur l’exemple\n\n\nVoir le code R\nD&lt;-DissTot(tl)\nrownames(D)=tl@LabStim\n\n\nOn obtient la matrice de dissimilarité totale :\n\n\nnameCitronpamplemousseananaspoiremielbeurrepain grillénoisettes grilléesfraiseframboisecerisecassispoivre vertfumépoivreréglisseCitron092115263031292021252529312430pamplemousse901817262931292024262527312429ananas2118015272830301420222425312931poire1517150283031301114232428312730miel2626272802322222830282524242623beurre3029283023022222827272128283027pain grillé3131303122220123130282724233024noisettes grillées2929303022221203029282626242927fraise2020141128283130014222630313031framboise2124201430273029140242227303128cerise2526222328272828222402629302628cassis2525242425212726262226027302928poivre vert2927252824282426302729270262726fumé3131313124282324313030302602822poivre2424292726303029303126292728024réglisse3029313023272427312828282622240",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Tri libre</span>"
+    ]
+  },
+  {
+    "objectID": "chapitre1.html#mds-multi-dimensionnal-scaling",
+    "href": "chapitre1.html#mds-multi-dimensionnal-scaling",
+    "title": "2  Tri libre",
+    "section": "2.3 MDS (Multi Dimensionnal Scaling)",
+    "text": "2.3 MDS (Multi Dimensionnal Scaling)\nOn considère \\(N\\) points \\(x_1,...,x_N\\) dans un espace de dimension \\(P\\) caractérisés par la matrice de dissimilarité \\(D=(\\delta_{ij})_{1\\leq i\\leq j\\leq N}\\).\nBUT représenter ces points dans un espace de dimension \\(k&lt;P\\) par \\(N\\) points \\(y_1,...,y_N\\) en conservant les proximités entre les points initiaux.\nCela suppose :\n\nl’existence de variables latentes (ie qui permettent de résumer des dissimilarités entre produits)\nle choix d’un indice de qualité de la projection des dissimilarités dans l’espace latent (\\(\\leadsto\\) S : Fonction de coût appelée Stress). Le but sera de trouver \\(y_1,...,y_N\\) tels que \\(S(y_1,...,y_N)\\) est minimale.\n\n\n2.3.1 MDS Métrique\nDans ce cas le stress est défini par \\[\nS(y_1,...,y_N)=\\sum_{i&lt; j} \\left( \\delta_{ij}-\\Vert y_i-y_j\\Vert\\right)^2\n\\] Dans ce cas on veut représenter les points initiaux en conservant la valeur absolue et relative de leurs dissimilarités.\n\n\n2.3.2 MDS non Métrique\nDans ce cas le stress est défini par \\[\nS(y_1,...,y_N)=\\sum_{i&lt; j} \\left( \\delta_{ij}-f(\\Vert y_i-y_j\\Vert)\\right)^2\n\\] où \\(f\\) est une fonction monotone de \\((i,j)\\). La fonction \\(f\\) s’adapte durant la phase d’optimisation.\nOn veut préserver uniquement l’ordre entre les proximités des points initiaux.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Tri libre</span>"
+    ]
+  },
+  {
+    "objectID": "chapitre1.html#le-stress-normalisé",
+    "href": "chapitre1.html#le-stress-normalisé",
+    "title": "2  Tri libre",
+    "section": "2.4 Le stress normalisé",
+    "text": "2.4 Le stress normalisé\nLa fonction de coût utilisé en pratique est une version normalisée du stress :\n\\[\nS_{norm}(y_1,...,y_N)=\\displaystyle \\frac{\\sum_{i&lt;j}(\\delta_{i,j}-f(\\Vert y_i-y_j\\Vert))^2}{\\sum_{i&lt;j}\\delta_{i,j}^2}\n\\]\noù \\(f\\) est l’identité pour la MDS métrique.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Tri libre</span>"
+    ]
+  },
+  {
+    "objectID": "chapitre1.html#choix-du-nombre-de-dimension-du-mds",
+    "href": "chapitre1.html#choix-du-nombre-de-dimension-du-mds",
+    "title": "2  Tri libre",
+    "section": "2.5 Choix du nombre de dimension du MDS",
+    "text": "2.5 Choix du nombre de dimension du MDS\nComme souvent en analyse de données, on peut utiliser la règle du coude pour déterminer le nombre de dimensions :\n\n\nVoir le code R\nstress&lt;-rep(NA,6)\n# getStress donne le stress de Kruskal (ie normalisé)\n\nfor(i in 1:6){\n  resMds&lt;-MdsSort(tl,ndim=i,metric = T)\n  stress[i]&lt;-getStress(resMds)  \n}\n\nplot(1:6,stress,type=\"b\",pch=20,\n     xlab=\"Nombre de dimensions\",\n     col=\"purple\")",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Tri libre</span>"
+    ]
+  },
+  {
+    "objectID": "chapitre1.html#représentation-obtenue",
+    "href": "chapitre1.html#représentation-obtenue",
+    "title": "2  Tri libre",
+    "section": "2.6 Représentation obtenue",
+    "text": "2.6 Représentation obtenue\n\n\nVoir le code R\nndim=3\nresMds&lt;-MdsSort(tl,ndim=ndim,metric = T)\nconfig&lt;-getConfig(resMds)\nconfig=as.data.frame(config)\ncolnames(config)=paste(\"Dim\",1:ndim,sep=\"\")\np1&lt;-ggplot(config,aes(x=Dim1,y=Dim2,label=rownames(config)))+geom_text()+\n  ggtitle(paste(\"MDS, Stress=\",round(resMds@Stress,3)))+\n  xlab(paste(\"Dim1\",round(100*resMds@Percent[1],1),\"%\",sep=\" \"))+\n  ylab(paste(\"Dim2\",round(100*resMds@Percent[2],1),\"%\",sep=\" \"))+\n  theme_minimal()\n  \np2&lt;-ggplot(config,aes(x=Dim2,y=Dim3,label=rownames(config)))+geom_text()+\n  ggtitle(paste(\"MDS, Stress=\",round(resMds@Stress,3)))+\n  xlab(paste(\"Dim2\",round(100*resMds@Percent[2],1),\"%\",sep=\" \"))+\n  ylab(paste(\"Dim3\",round(100*resMds@Percent[3],1),\"%\",sep=\" \"))+\n  theme_minimal()\nlibrary(gridExtra)\n\n\n\nAttaching package: 'gridExtra'\n\n\nThe following object is masked from 'package:dplyr':\n\n    combine\n\n\nVoir le code R\ngrid.arrange(p1,p2,ncol=2)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Tri libre</span>"
+    ]
+  },
+  {
+    "objectID": "chapitre1.html#ellipses-de-confiance",
+    "href": "chapitre1.html#ellipses-de-confiance",
+    "title": "2  Tri libre",
+    "section": "2.7 Ellipses de confiance",
+    "text": "2.7 Ellipses de confiance\n\nOn se pose la question de la stabilité de la configuration. D’autres individus proposeraient d’autres partitions \\(\\leadsto\\) autre configuration.\nPseudo-individus à partir des individus de l’échantillon (Bootstrap) : on tire des individus avec remise dans l’échantillon et on construit la configuration obtenue (en général \\(B=500\\) tirages).\nConstruction d’ellipses de confiance à partir de ces \\(B\\) configurations.\n\n\n\nVoir le code R\nresMds&lt;-MdsSort(tl,ndim=ndim,metric = T,nboot=500)\np1=plot_MDS(resMds,1,2)\np2=plot_MDS(resMds,1,3)\ngrid.arrange(p1,p2,ncol=2)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Tri libre</span>"
+    ]
+  },
+  {
+    "objectID": "chapitre1.html#informations-additionnelles",
+    "href": "chapitre1.html#informations-additionnelles",
+    "title": "2  Tri libre",
+    "section": "2.8 Informations additionnelles",
+    "text": "2.8 Informations additionnelles\nOn propose aux 31 sujets une liste de 36 descripteurs pour les 16 produits considérés. On obtient la table de contingence suivante :\n\n\nnameAcidSmokedHeadyCitrusLemonCakeMilkWoodyGrainLowRedfruitGrilledStrongFatVegetalMedicineChemicalLicoriceBreadAlcoholAlmondCaramelCoalUnpleasantSoftPepperFlowerFreshRedFruitNaturalSpicySugarHotPleasantCandyLemon30171100100103020100100001135111015235Grapefruit5019900001103021100110011124113014223Pineapple5015400400303040100010013013313019028Pear201450010010302011002001220411510100213Honey121130132002702100021118212301114311Butter210000503202361000012204300102013112Grilledbread051001123105513000201318110000011200Grilledhazelnut031102136103412010101205211101002310Strawberry301320000050300010002001300451400130214Raspberry11113000022010011100000350142121010029Cherry111112131210111120029000400114005235Blackcurrant111111222211114001010202512318104312Greenpepper330111060102108100010215012401102210Smoked0190000010106700210010134010000010201Pepper310130120011202120011002280111141711Licorice151010020102510323030114000001120401",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Tri libre</span>"
+    ]
+  },
+  {
+    "objectID": "chapitre1.html#caractérisation-des-axes-latents",
+    "href": "chapitre1.html#caractérisation-des-axes-latents",
+    "title": "2  Tri libre",
+    "section": "2.9 Caractérisation des axes latents",
+    "text": "2.9 Caractérisation des axes latents\n\nOn effectue la régression de chacun des descripteurs sur les composantes de la MDS.\nLes coefficients de regression seront utilisés comme coordonnées dans les plans factoriels.\n\nExemple\nDescripteur Acide :\n\n\nVoir le code R\nbeta&lt;-data.frame(matrix(NA,nrow=dim(ia)[2],ncol=dim(config)[2]))\n\nfor(i in 1:dim(beta)[1]){\n  beta[i,]&lt;-coef(lm(AromaTerms[,i]~as.matrix(config)))[-1]\n}\nrownames(beta)&lt;-colnames(ia)\ncolnames(beta)[1:ndim]&lt;-paste(\"Dim\",1:ndim,sep=\"\")\n\n\nOn obtient :\n\n\nnameDim1Dim2Dim3Acid-2.01794673-1.72496680.1064646Smoked5.95945509-2.1921155-3.5515100Heady-0.351894020.36005410.2250707Citrus-3.62536087-1.89894211.1125966Lemon-4.03865496-3.37289312.9779419Cake0.382578790.8362063-1.1839306Milk0.701947481.94832851.6124515Woody0.94534488-0.7535015-2.7416106Grain1.719125482.98647110.7676216Low0.302505421.2412491-0.2532134Redfruit-1.930200600.1686525-0.4994624Grilled3.209361910.2778622-0.7166606Strong2.26661154-0.74280001.4970251Fat0.841075962.19799081.2382889Vegetal0.12128607-0.4052856-1.9195814Medicine0.68638031-1.3234405-0.1490178Chemical-0.28615063-0.9865095-0.4348097Licorice0.11880756-0.30713090.7666882Bread0.480326050.5134819-0.2474069Alcohol0.59188403-0.86271700.6019463Almond-0.815625141.5740392-3.2498261Caramel1.467431661.21284760.1082160Coal1.06241073-0.5905547-0.5755819Unpleasant3.898266991.17461000.7644798Soft-1.558286172.69464150.7280814Pepper0.19749672-3.00564911.2985158Flower-0.46849715-0.24943800.8513278Fresh-2.62314094-0.23914840.4562088Red-1.930200600.1686525-0.4994624Fruit-10.634689261.24093531.5327095Natural0.01204305-0.40276290.4577618Spicy0.49299547-1.91604461.3050949Sugar-6.363645742.8760189-1.1974220Hot1.64211036-2.59996661.8823408Pleasant-1.574922560.2003923-0.5620110Candy-7.159164691.6855862-1.9332767",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Tri libre</span>"
+    ]
+  },
+  {
+    "objectID": "chapitre1.html#représentation-graphique",
+    "href": "chapitre1.html#représentation-graphique",
+    "title": "2  Tri libre",
+    "section": "2.10 Représentation graphique",
+    "text": "2.10 Représentation graphique\n\n\nVoir le code R\nggplot(beta, aes(x=1.05*Dim1, y=1.05*Dim2,label=rownames(beta))) +\n  geom_text() +\n  geom_segment(data=beta,aes(x=0, y=0, xend=Dim1, yend=Dim2), arrow = arrow(length=unit(.1, 'cm')))+\n  theme_minimal()+\n  #theme(element_text(size=10))+\n  xlab(paste(\"Dim1=\",round(resMds@Percent[1]*100,3),\"%\"))+\n  ylab(paste(\"Dim2=\",round(resMds@Percent[2]*100,3),\"%\"))+\n  ggtitle(paste(\"MDS, stress=\",round(resMds@Stress,3)))",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Tri libre</span>"
+    ]
+  },
+  {
+    "objectID": "chapitre2.html",
+    "href": "chapitre2.html",
+    "title": "3  Partition consensuelle",
+    "section": "",
+    "text": "3.1 Mesure d’accord entre deux partitions\nOn demande à 2 participants de partager en groupes 5 produits numérotés \\(\\{1,2,3,4,5\\}\\) On obtient les deux partitions suivantes : \\(P_1=\\{ \\{1,2,3\\},\\{4,5\\} \\}\\) et \\(P_2=\\{ \\{1,2\\},\\{3,4,5\\} \\}\\). On va mesurer l’accord entre ces deux partitions en regardant si chaque paire de produits est groupé dans \\(P_1\\) (Gr P1), séparé dans \\(P_1\\) (sep P1). De même dans \\(P_2.\\)\nnameProduit 1Produit 2Produit 3Produit 4Produit 5P111122P211222\n\n\nnameGr P2Sep P2Gr P142Sep P122\nLa fonction RandIndex du package FreeSortR permet d’effectuer ce calcul :\nVoir le code R\nRandIndex(P1,P2)$Rand\n\n\n[1] 0.6",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Partition consensuelle</span>"
+    ]
+  },
+  {
+    "objectID": "chapitre2.html#mesure-daccord-entre-deux-partitions",
+    "href": "chapitre2.html#mesure-daccord-entre-deux-partitions",
+    "title": "3  Partition consensuelle",
+    "section": "",
+    "text": "Courcoux et al. (2014) définissent le Rand Index \\(RI(P_1,P_2)=\\dfrac{a+d}{P(P-1)/2}\\) où \\(a+d\\) est le nombre d’accord entre \\(P_1,P_2\\) (ie lorsqu’elles regroupent ou qu’elles séparent les deux produits).\nOn a \\(0\\leq RI(P_1,P_2) \\leq 1\\) (0 désaccord total et 1 accord total).",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Partition consensuelle</span>"
+    ]
+  },
+  {
+    "objectID": "chapitre2.html#inconvénient",
+    "href": "chapitre2.html#inconvénient",
+    "title": "3  Partition consensuelle",
+    "section": "3.2 Inconvénient",
+    "text": "3.2 Inconvénient\nIl augmente en moyenne lorsque le nombre \\(N\\) de sujets augmente. La solution est de remplacer \\(RI\\) par \\[\nARI(P_1,P_2)=\\dfrac{RI(P_1,P_2)-\\overline{RI}}{1-\\overline{RI}}\n\\]\noù \\(\\overline{RI}\\) est la moyenne du \\(RI\\) pour 2 partitions dont le consensus n’est dû qu’au hasard.\nConséquences\n\n\\(ARI(P_1,P_2)=0\\) lorsque le consensus n’est dû qu’au hasard,\n\\(ARI(P_1,P_2)=1\\) lorsque le consensus est parfait (ie les partitions sont identiques).\n\n\n\nVoir le code R\nRandIndex(P1,P2)$AdjustedRand\n\n\n[1] 0.1666667",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Partition consensuelle</span>"
+    ]
+  },
+  {
+    "objectID": "chapitre2.html#mesure-de-consensus-basé-sur-ari",
+    "href": "chapitre2.html#mesure-de-consensus-basé-sur-ari",
+    "title": "3  Partition consensuelle",
+    "section": "3.3 Mesure de consensus basé sur \\(ARI\\)",
+    "text": "3.3 Mesure de consensus basé sur \\(ARI\\)\n\nOn cherche une partition \\(P\\) telle que la moyenne des \\(ARI\\) de chaque sujet avec cette partition est maximale c’est à dire \\(C_M(P)=\\frac 1{N}\\sum_{n=1}^N ARI(P,P_n)\\) maximale.\nOn procède de façon itérative en fixant le nombre \\(K\\) de classes dans la partition consensuelle. On choisit la valeur de \\(K\\) pour laquelle \\(C_M(P)\\) est maximal.\nCet algorithme est sensible au choix de la première partition. Plusieurs choix sont proposés dans FreeSorteR on choisira :\n\n\n\nVoir le code R\ncons=ConsensusPartition(tl,ngroups=0,type=\"fusion\")\n\n\n\nFusion algorithm. May be time consuming.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Partition consensuelle</span>"
+    ]
+  },
+  {
+    "objectID": "chapitre2.html#résultat-pour-lexemple",
+    "href": "chapitre2.html#résultat-pour-lexemple",
+    "title": "3  Partition consensuelle",
+    "section": "3.4 Résultat pour l’exemple",
+    "text": "3.4 Résultat pour l’exemple\nPartition en 7 classes avec \\(C_M(P)=0.308\\)\n\n\nname.Lemon1Grapefruit1Pineapple1Pear1Honey2Butter3Grilledbread2Grilledhazelnut2Strawberry1Raspberry1Cherry4Blackcurrant3Greenpepper5Smoked6Pepper7Licorice6",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Partition consensuelle</span>"
+    ]
+  },
+  {
+    "objectID": "chapitre2.html#représentation-de-la-partition-consensuelle-sur-le-plan-latent",
+    "href": "chapitre2.html#représentation-de-la-partition-consensuelle-sur-le-plan-latent",
+    "title": "3  Partition consensuelle",
+    "section": "3.5 Représentation de la partition consensuelle sur le plan latent :",
+    "text": "3.5 Représentation de la partition consensuelle sur le plan latent :\n\n\nVoir le code R\nconfig=getConfig(resMds)\ncolnames(config)=paste(\"Dim\",1:3,sep=\"\")\nConsensus=as.factor(cons$Consensus)\nggplot(config,aes(x=Dim1,y=Dim2,label=rownames(config),color=Consensus))+\n  geom_text()+\n  xlab(paste(\"Dim1=\",round(resMds@Percent[1]*100,1),\"%\"))+\n  ylab(paste(\"Dim2=\",round(resMds@Percent[2]*100,1),\"%\"))+\n  ggtitle(paste(\"MDS, stress=\",round(resMds@Stress,3)))+\n  theme_minimal()+theme(legend.position = \"none\")",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Partition consensuelle</span>"
+    ]
+  },
+  {
+    "objectID": "chapitre2.html#classification-des-sujets",
+    "href": "chapitre2.html#classification-des-sujets",
+    "title": "3  Partition consensuelle",
+    "section": "3.6 Classification des sujets",
+    "text": "3.6 Classification des sujets\nL’\\(ARI\\) permet de définir une distance entre les sujets, \\[\nd_{ARI}(S_i,S_j)=\\sqrt{1-ARI(P_i,P_j)}\n\\] où le sujet \\(S_i\\) propose la partition \\(P_i.\\)\n\n3.6.1 CAH avec d_ARI\nOn peut alors réaliser une classification ascendante hierarchique avec cette distance :\n\n\nVoir le code R\ni=j=1\nd_ARI&lt;-function(df,i,j){\n  return(sqrt(1-RandIndex(df[,i],df[,j])$AdjustedRand))\n}\nN&lt;-dim(df)[2]\nM&lt;-matrix(NA,nrow=N,ncol=N)\nfor(i in 1:N){\n  for(j in 1:N){\n    M[i,j]&lt;-d_ARI(df,i,j)\n  }\n}\n\ndd &lt;- as.dist(M)\n\nres&lt;-hclust(dd,method=\"ward.D2\")\nplot(res,hang=-1,ylim=c(0,1.5))\n\n\n\n\n\n\n\n\n\nOn choisit de former deux groupes d’individus :\n\n\nVoir le code R\ngr&lt;-cutree(res,2)\n\n\nCes groupes sont déséquilibrés et constitués de\n\n\nVoir le code R\nflextable(as.data.frame(table(gr)))\n\n\ngrFreq12427\n\n\nOn peut ainsi mettre en évidence le consensus pour chacun de ces deux groupes :\n\n\nVoir le code R\ndf1&lt;-df[,gr==1]\nndim=3\ntl1&lt;-SortingPartition(df1)\nresMds1&lt;-MdsSort(tl1,ndim=ndim)\nconfig1&lt;-getConfig(resMds1)\ncons1&lt;-ConsensusPartition(tl1,ngroups=0)\nconfig1=getConfig(resMds1)\ncolnames(config1)=paste(\"Dim\",1:ndim,sep=\"\")\nConsensus1=as.factor(cons1$Consensus)\np1=ggplot(config1,aes(x=Dim1,y=Dim2,label=rownames(config1),color=Consensus1))+\n  geom_text()+\n  xlab(paste(\"Dim1=\",round(resMds1@Percent[1]*100,3),\"%\"))+\n  ylab(paste(\"Dim2=\",round(resMds1@Percent[2]*100,3),\"%\"))+\n  labs(\n    title=paste(\"MDS, stress=\",round(resMds1@Stress,3),\", N=\",sum(gr==1),sep=\"\"),\n    subtitle = paste(\"Consensus=\",round(cons1$Crit,3),\", k gr=\",max(cons1$Consensus)),sep=\"\")+\n  theme_minimal()+theme(legend.position = \"none\")\n\ndf1&lt;-df[,gr==2]\ntl1&lt;-SortingPartition(df1)\nresMds1&lt;-MdsSort(tl1,ndim=ndim)\nconfig1&lt;-getConfig(resMds1)\ncons1&lt;-ConsensusPartition(tl1,ngroups=0)\nconfig1=getConfig(resMds1)\ncolnames(config1)=paste(\"Dim\",1:ndim,sep=\"\")\nConsensus1=as.factor(cons1$Consensus)\np2=ggplot(config1,aes(x=Dim1,y=Dim2,label=rownames(config1),color=Consensus1))+\n  geom_text()+\n  xlab(paste(\"Dim1=\",round(resMds1@Percent[1]*100,3),\"%\"))+\n  ylab(paste(\"Dim2=\",round(resMds1@Percent[2]*100,3),\"%\"))+\n  labs(\n    title=paste(\"MDS, stress=\",round(resMds1@Stress,3),\", N=\",sum(gr==2),sep=\"\"),\n    subtitle = paste(\"Consensus=\",round(cons1$Crit,3),\", k gr=\",max(cons1$Consensus)),sep=\"\")+\n  theme_minimal()+theme(legend.position = \"none\")\ngrid.arrange(p1,p2,ncol=2)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Partition consensuelle</span>"
+    ]
+  },
+  {
+    "objectID": "TD.html",
+    "href": "TD.html",
+    "title": "4  TD",
+    "section": "",
+    "text": "4.1 Exercice 1 :(proposé par M. Cataneo)\nVoici 16 images d’animaux. Il vous a été demandé d’en faire des groupes.\nLes résultats sont disponibles dans le fichier suivant :\nTL_animaux",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>TD</span>"
+    ]
+  },
+  {
+    "objectID": "TD.html#exercice-1-proposé-par-m.-cataneo",
+    "href": "TD.html#exercice-1-proposé-par-m.-cataneo",
+    "title": "4  TD",
+    "section": "",
+    "text": "Images à classer\n\n\n\n\n\nDessiner le stress normalisé en fonction du nombre de dimensions retenues dans la MDS.\nInclure les ellipses de confiance à 95%. Interpréter les résultats.\nDéterminer la partition consensuelle. A-t-on intérêt à constituer des sous groupes pour améliorer cette partition consensuelle ?",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>TD</span>"
+    ]
+  },
+  {
+    "objectID": "TD.html#exercice-2",
+    "href": "TD.html#exercice-2",
+    "title": "4  TD",
+    "section": "4.2 Exercice 2 :",
+    "text": "4.2 Exercice 2 :\nCes données sont issues d’un cours de sensométrie de François Husson cours Husson\n\n59 sujets ont réalisé un tri libre de 12 jus d’orange TL.\n48 sujets ont réalisé un liking de ces 12 jus d’orange Liking.\n\n\n\n\nConsignes\n\n\nOn utilisera les codes vus dans le cours pour répondre aux différentes questions ci-dessous. On choisira d’utiliser une MDS métrique et le stress normalisé comme fonction de coût.\n\nImporter le fichier orange_TL.csv dans R. Combien de sujets et de produits font parti de l’étude.\nFaire une analyse descriptive du nombre de groupes dans les partitions données par les sujets de l’étude (moyenne, écart type, boxplot).\nDessiner le stress normalisé en fonction du nombre de dimensions retenues dans la MDS.\nDans la suite, on retiendra 2 dimensions. Dessiner la projection des 12 jus d’orange sur le plan factoriel correspondant. On inclura les ellipses de confiance à 95%. Interpréter les résultats.\nDéterminer la partition consensuelle.\nRéaliser une classification des individus pour améliorer le consensus entre les individus dans les sous groupes obtenus. Quel est le gain obtenu avec 2 groupes ? 3 groupes ?\n\nOn ajoute une matrice de Liking. Importer le fichier orange_liking.csv.\n\nAnalyse descriptive des données de Liking :\n\n\nDonner les moyennes des juges, des jus d’oranges.\nDe même donner les dispersions des notes selon les juges et selon les produits.\nDessiner les boxplots des notes attribuées par les juges. Peut on en penser qu’il y a un effet juge ? Comment pourrait-on le tester ?\n\n\nEffectuer les régressions des notes des juges sur les 2 composantes de la MDS réalisée à la question 4. On stockera le résultat dans une matrice.\nDessiner la carte des préférences obtenue. On interprètera les résultats.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>TD</span>"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Tri Libre",
+    "section": "",
+    "text": "1 Introduction\nCe cours fait parti de l’EC935-F Techniques avancées en évaluations sensorielles et études consomateurs (2).\nIl s’agit de mettre en oeuvre le tri libre dans R.\nNous utiliserons le package FreeSorteR écrit par P. Courcoux.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#principe",
+    "href": "index.html#principe",
+    "title": "Tri Libre",
+    "section": "1.1 Principe",
+    "text": "1.1 Principe\n\nOn demande à \\(N\\) participants de proposer une partition de \\(P\\) produits en sous ensembles disjoints.\nLe nombre de partitions sera en général compris entre 2 et \\(P-1\\).\nIl s’agit d’une technique descriptive et non verbale qui est proposée à des sujets non entrainés.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#avantages",
+    "href": "index.html#avantages",
+    "title": "Tri Libre",
+    "section": "1.2 Avantages",
+    "text": "1.2 Avantages\n\nLorsque le nombre de produits est relativement important pour éviter la lourdeur cognitive et la fatigue induite des méthodes descriptives.\nPeut capter des informations latentes difficiles à verbaliser par des descripteurs sensoriels analytiques.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#inconvénients",
+    "href": "index.html#inconvénients",
+    "title": "Tri Libre",
+    "section": "1.3 Inconvénients",
+    "text": "1.3 Inconvénients\n\nDépendant de l’espace produit\nImpossible d’agréger les données de plusieurs études (facilement)\nBesoin d’informations descriptives additionnelles pour comprendre l’espace produit",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  }
+]

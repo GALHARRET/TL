@@ -1,0 +1,37 @@
+
+# Introduction
+Ce cours fait parti de l'EC935-F Techniques avancées en évaluations sensorielles et études consomateurs (2).
+
+Il s'agit de mettre en oeuvre le tri libre dans R.
+
+Nous utiliserons le package ***FreeSorteR*** écrit par P. Courcoux.
+
+
+-   Le Tri Libre fait partie des méthodes holistiques.
+
+-   Les méthodes holistiques présentent l'ensemble des produits d'intérêt en même temps aux panélistes et mesurent les similarités ou dissimilarités entre les produits en fonction de leurs propriétés sensorielles globales et sans aucune caractérisation analytique contrairement aux méthodes descriptives.
+
+## Principe
+
+-   On demande à $N$ participants de proposer une partition de $P$ produits en sous ensembles disjoints.
+
+-   Le nombre de partitions sera en général compris entre 2 et $P-1$.
+
+-   Il s'agit d'une technique descriptive et non verbale qui est proposée à des sujets non entrainés.
+
+## Avantages
+
+-   Lorsque le nombre de produits est relativement important pour éviter la lourdeur cognitive et la fatigue induite des méthodes descriptives.
+
+-   Peut capter des informations latentes difficiles à verbaliser par des descripteurs sensoriels analytiques.
+
+## Inconvénients
+
+-   Dépendant de l'espace produit
+
+-   Impossible d'agréger les données de plusieurs études (facilement)
+
+-   Besoin d'informations descriptives additionnelles pour comprendre l'espace produit
+
+
+

@@ -1,0 +1,45 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Tri Libre"
+  subtitle: "ING3 FOO'DS"
+  author: "Jean-Michel Galharret"
+  date: "10/28/2024"
+  chapters:
+    - index.qmd
+    - chapitre1.qmd
+    - chapitre2.qmd
+    - TD.qmd
+  sidebar:
+    logo: 'oniris.png'
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo 
+    code-fold: true
+    code-summary: "Voir le code R"
+    include-in-header:
+      text: |
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            var sidebar = document.getElementById('quarto-sidebar');
+            var logo = sidebar.getElementsByTagName('img')[0];
+            
+            sidebar.appendChild(logo);
+          });
+        </script>
+
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+
+execute: 
+  eval: true
+  echo: true
+  warning: true
+  
