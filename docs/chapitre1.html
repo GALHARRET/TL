@@ -2,16 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>2&nbsp; Tri libre – Tri Libre</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -24,9 +21,8 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -37,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -70,16 +66,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <link href="./chapitre2.html" rel="next">
 <link href="./index.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -117,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -130,7 +125,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+      if (mathElements[i].tagName == "SPAN") {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -148,7 +143,7 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-sidebar floating quarto-light">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -172,8 +167,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./oniris.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./oniris.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="./oniris.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Tri Libre</a> 
@@ -269,14 +263,14 @@ window.Quarto = {
 <div class="cell">
 <details class="code-fold">
 <summary>Voir le code R</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"GALHARRET/TeachFreeSortR"</span>,<span class="at">upgrade =</span> <span class="st">"always"</span>,<span class="at">force =</span> <span class="cn">TRUE</span>,<span class="at">dependencies =</span><span class="cn">NA</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"GALHARRET/TeachFreeSortR"</span>,<span class="at">upgrade =</span> <span class="st">"always"</span>,<span class="at">force =</span> <span class="cn">TRUE</span>,<span class="at">dependencies =</span><span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Ensuite charger le package :</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Voir le code R</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TeachFreeSortR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TeachFreeSortR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>On va étudier un premier exemple de tri libre de 16 arômes proposés à 31 sujets.</p>
@@ -284,28 +278,28 @@ window.Quarto = {
 <div class="cell">
 <details class="code-fold">
 <summary>Voir le code R</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"aroma.csv"</span>,<span class="at">header =</span> T,<span class="at">sep=</span><span class="st">";"</span>,<span class="at">row.names=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"aroma.csv"</span>,<span class="at">header =</span> T,<span class="at">sep=</span><span class="st">";"</span>,<span class="at">row.names=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fsmwybkbvc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fsmwybkbvc table {
+<div id="gxpufmeheq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gxpufmeheq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fsmwybkbvc thead, #fsmwybkbvc tbody, #fsmwybkbvc tfoot, #fsmwybkbvc tr, #fsmwybkbvc td, #fsmwybkbvc th {
+#gxpufmeheq thead, #gxpufmeheq tbody, #gxpufmeheq tfoot, #gxpufmeheq tr, #gxpufmeheq td, #gxpufmeheq th {
   border-style: none;
 }
 
-#fsmwybkbvc p {
+#gxpufmeheq p {
   margin: 0;
   padding: 0;
 }
 
-#fsmwybkbvc .gt_table {
+#gxpufmeheq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -331,12 +325,12 @@ window.Quarto = {
   border-left-color: #D3D3D3;
 }
 
-#fsmwybkbvc .gt_caption {
+#gxpufmeheq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fsmwybkbvc .gt_title {
+#gxpufmeheq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -348,7 +342,7 @@ window.Quarto = {
   border-bottom-width: 0;
 }
 
-#fsmwybkbvc .gt_subtitle {
+#gxpufmeheq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -360,7 +354,7 @@ window.Quarto = {
   border-top-width: 0;
 }
 
-#fsmwybkbvc .gt_heading {
+#gxpufmeheq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -372,13 +366,13 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#fsmwybkbvc .gt_bottom_border {
+#gxpufmeheq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fsmwybkbvc .gt_col_headings {
+#gxpufmeheq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -393,7 +387,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#fsmwybkbvc .gt_col_heading {
+#gxpufmeheq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -413,7 +407,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#fsmwybkbvc .gt_column_spanner_outer {
+#gxpufmeheq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -425,15 +419,15 @@ window.Quarto = {
   padding-right: 4px;
 }
 
-#fsmwybkbvc .gt_column_spanner_outer:first-child {
+#gxpufmeheq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fsmwybkbvc .gt_column_spanner_outer:last-child {
+#gxpufmeheq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fsmwybkbvc .gt_column_spanner {
+#gxpufmeheq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -445,11 +439,11 @@ window.Quarto = {
   width: 100%;
 }
 
-#fsmwybkbvc .gt_spanner_row {
+#gxpufmeheq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fsmwybkbvc .gt_group_heading {
+#gxpufmeheq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -475,7 +469,7 @@ window.Quarto = {
   text-align: left;
 }
 
-#fsmwybkbvc .gt_empty_group_heading {
+#gxpufmeheq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -490,15 +484,15 @@ window.Quarto = {
   vertical-align: middle;
 }
 
-#fsmwybkbvc .gt_from_md > :first-child {
+#gxpufmeheq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fsmwybkbvc .gt_from_md > :last-child {
+#gxpufmeheq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fsmwybkbvc .gt_row {
+#gxpufmeheq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -517,7 +511,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#fsmwybkbvc .gt_stub {
+#gxpufmeheq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -530,7 +524,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#fsmwybkbvc .gt_stub_row_group {
+#gxpufmeheq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -544,15 +538,15 @@ window.Quarto = {
   vertical-align: top;
 }
 
-#fsmwybkbvc .gt_row_group_first td {
+#gxpufmeheq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fsmwybkbvc .gt_row_group_first th {
+#gxpufmeheq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fsmwybkbvc .gt_summary_row {
+#gxpufmeheq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -562,16 +556,16 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#fsmwybkbvc .gt_first_summary_row {
+#gxpufmeheq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fsmwybkbvc .gt_first_summary_row.thick {
+#gxpufmeheq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fsmwybkbvc .gt_last_summary_row {
+#gxpufmeheq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -581,7 +575,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#fsmwybkbvc .gt_grand_summary_row {
+#gxpufmeheq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -591,7 +585,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#fsmwybkbvc .gt_first_grand_summary_row {
+#gxpufmeheq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -601,7 +595,7 @@ window.Quarto = {
   border-top-color: #D3D3D3;
 }
 
-#fsmwybkbvc .gt_last_grand_summary_row_top {
+#gxpufmeheq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -611,11 +605,11 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#fsmwybkbvc .gt_striped {
+#gxpufmeheq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fsmwybkbvc .gt_table_body {
+#gxpufmeheq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -624,7 +618,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#fsmwybkbvc .gt_footnotes {
+#gxpufmeheq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -638,7 +632,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#fsmwybkbvc .gt_footnote {
+#gxpufmeheq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -647,7 +641,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#fsmwybkbvc .gt_sourcenotes {
+#gxpufmeheq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -661,7 +655,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#fsmwybkbvc .gt_sourcenote {
+#gxpufmeheq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -669,83 +663,83 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#fsmwybkbvc .gt_left {
+#gxpufmeheq .gt_left {
   text-align: left;
 }
 
-#fsmwybkbvc .gt_center {
+#gxpufmeheq .gt_center {
   text-align: center;
 }
 
-#fsmwybkbvc .gt_right {
+#gxpufmeheq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fsmwybkbvc .gt_font_normal {
+#gxpufmeheq .gt_font_normal {
   font-weight: normal;
 }
 
-#fsmwybkbvc .gt_font_bold {
+#gxpufmeheq .gt_font_bold {
   font-weight: bold;
 }
 
-#fsmwybkbvc .gt_font_italic {
+#gxpufmeheq .gt_font_italic {
   font-style: italic;
 }
 
-#fsmwybkbvc .gt_super {
+#gxpufmeheq .gt_super {
   font-size: 65%;
 }
 
-#fsmwybkbvc .gt_footnote_marks {
+#gxpufmeheq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fsmwybkbvc .gt_asterisk {
+#gxpufmeheq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fsmwybkbvc .gt_indent_1 {
+#gxpufmeheq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fsmwybkbvc .gt_indent_2 {
+#gxpufmeheq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fsmwybkbvc .gt_indent_3 {
+#gxpufmeheq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fsmwybkbvc .gt_indent_4 {
+#gxpufmeheq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fsmwybkbvc .gt_indent_5 {
+#gxpufmeheq .gt_indent_5 {
   text-indent: 25px;
 }
 
-#fsmwybkbvc .katex-display {
+#gxpufmeheq .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#fsmwybkbvc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#gxpufmeheq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading header">
-<td colspan="30" class="gt_heading gt_title gt_font_normal">Données brutes</td>
+<th colspan="30" class="gt_heading gt_title gt_font_normal">Données brutes</th>
 </tr>
 <tr class="gt_heading even">
-<td colspan="30" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">29 individus, 16 produits</td>
+<th colspan="30" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">29 individus, 16 produits</th>
 </tr>
 <tr class="gt_col_headings header">
 <th id="a::stub" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
@@ -782,7 +776,7 @@ window.Quarto = {
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<th id="stub_1_1" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Lemon</th>
+<td id="stub_1_1" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Lemon</td>
 <td class="gt_row gt_right" headers="stub_1_1 S1">5.00</td>
 <td class="gt_row gt_right" headers="stub_1_1 S2">1.00</td>
 <td class="gt_row gt_right" headers="stub_1_1 S3">4.00</td>
@@ -814,7 +808,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_1 S29">8.00</td>
 </tr>
 <tr class="even">
-<th id="stub_1_2" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Grapefruit</th>
+<td id="stub_1_2" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Grapefruit</td>
 <td class="gt_row gt_right" headers="stub_1_2 S1">5.00</td>
 <td class="gt_row gt_right" headers="stub_1_2 S2">3.00</td>
 <td class="gt_row gt_right" headers="stub_1_2 S3">5.00</td>
@@ -846,7 +840,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_2 S29">2.00</td>
 </tr>
 <tr class="odd">
-<th id="stub_1_3" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Pineapple</th>
+<td id="stub_1_3" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Pineapple</td>
 <td class="gt_row gt_right" headers="stub_1_3 S1">4.00</td>
 <td class="gt_row gt_right" headers="stub_1_3 S2">1.00</td>
 <td class="gt_row gt_right" headers="stub_1_3 S3">5.00</td>
@@ -878,7 +872,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_3 S29">4.00</td>
 </tr>
 <tr class="even">
-<th id="stub_1_4" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Pear</th>
+<td id="stub_1_4" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Pear</td>
 <td class="gt_row gt_right" headers="stub_1_4 S1">5.00</td>
 <td class="gt_row gt_right" headers="stub_1_4 S2">1.00</td>
 <td class="gt_row gt_right" headers="stub_1_4 S3">5.00</td>
@@ -910,7 +904,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_4 S29">4.00</td>
 </tr>
 <tr class="odd">
-<th id="stub_1_5" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Honey</th>
+<td id="stub_1_5" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Honey</td>
 <td class="gt_row gt_right" headers="stub_1_5 S1">4.00</td>
 <td class="gt_row gt_right" headers="stub_1_5 S2">2.00</td>
 <td class="gt_row gt_right" headers="stub_1_5 S3">3.00</td>
@@ -942,7 +936,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_5 S29">12.00</td>
 </tr>
 <tr class="even">
-<th id="stub_1_6" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Butter</th>
+<td id="stub_1_6" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Butter</td>
 <td class="gt_row gt_right" headers="stub_1_6 S1">1.00</td>
 <td class="gt_row gt_right" headers="stub_1_6 S2">4.00</td>
 <td class="gt_row gt_right" headers="stub_1_6 S3">5.00</td>
@@ -974,7 +968,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_6 S29">9.00</td>
 </tr>
 <tr class="odd">
-<th id="stub_1_7" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Grilledbread</th>
+<td id="stub_1_7" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Grilledbread</td>
 <td class="gt_row gt_right" headers="stub_1_7 S1">1.00</td>
 <td class="gt_row gt_right" headers="stub_1_7 S2">2.00</td>
 <td class="gt_row gt_right" headers="stub_1_7 S3">3.00</td>
@@ -1006,7 +1000,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_7 S29">1.00</td>
 </tr>
 <tr class="even">
-<th id="stub_1_8" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Grilledhazelnut</th>
+<td id="stub_1_8" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Grilledhazelnut</td>
 <td class="gt_row gt_right" headers="stub_1_8 S1">5.00</td>
 <td class="gt_row gt_right" headers="stub_1_8 S2">2.00</td>
 <td class="gt_row gt_right" headers="stub_1_8 S3">3.00</td>
@@ -1038,7 +1032,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_8 S29">6.00</td>
 </tr>
 <tr class="odd">
-<th id="stub_1_9" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Strawberry</th>
+<td id="stub_1_9" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Strawberry</td>
 <td class="gt_row gt_right" headers="stub_1_9 S1">5.00</td>
 <td class="gt_row gt_right" headers="stub_1_9 S2">1.00</td>
 <td class="gt_row gt_right" headers="stub_1_9 S3">5.00</td>
@@ -1070,7 +1064,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_9 S29">3.00</td>
 </tr>
 <tr class="even">
-<th id="stub_1_10" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Raspberry</th>
+<td id="stub_1_10" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Raspberry</td>
 <td class="gt_row gt_right" headers="stub_1_10 S1">3.00</td>
 <td class="gt_row gt_right" headers="stub_1_10 S2">3.00</td>
 <td class="gt_row gt_right" headers="stub_1_10 S3">4.00</td>
@@ -1102,7 +1096,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_10 S29">4.00</td>
 </tr>
 <tr class="odd">
-<th id="stub_1_11" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Cherry</th>
+<td id="stub_1_11" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Cherry</td>
 <td class="gt_row gt_right" headers="stub_1_11 S1">3.00</td>
 <td class="gt_row gt_right" headers="stub_1_11 S2">3.00</td>
 <td class="gt_row gt_right" headers="stub_1_11 S3">5.00</td>
@@ -1134,7 +1128,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_11 S29">7.00</td>
 </tr>
 <tr class="even">
-<th id="stub_1_12" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Blackcurrant</th>
+<td id="stub_1_12" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Blackcurrant</td>
 <td class="gt_row gt_right" headers="stub_1_12 S1">3.00</td>
 <td class="gt_row gt_right" headers="stub_1_12 S2">4.00</td>
 <td class="gt_row gt_right" headers="stub_1_12 S3">4.00</td>
@@ -1166,7 +1160,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_12 S29">9.00</td>
 </tr>
 <tr class="odd">
-<th id="stub_1_13" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Greenpepper</th>
+<td id="stub_1_13" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Greenpepper</td>
 <td class="gt_row gt_right" headers="stub_1_13 S1">4.00</td>
 <td class="gt_row gt_right" headers="stub_1_13 S2">3.00</td>
 <td class="gt_row gt_right" headers="stub_1_13 S3">1.00</td>
@@ -1198,7 +1192,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_13 S29">11.00</td>
 </tr>
 <tr class="even">
-<th id="stub_1_14" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Smoked</th>
+<td id="stub_1_14" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Smoked</td>
 <td class="gt_row gt_right" headers="stub_1_14 S1">2.00</td>
 <td class="gt_row gt_right" headers="stub_1_14 S2">2.00</td>
 <td class="gt_row gt_right" headers="stub_1_14 S3">2.00</td>
@@ -1230,7 +1224,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_14 S29">10.00</td>
 </tr>
 <tr class="odd">
-<th id="stub_1_15" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Pepper</th>
+<td id="stub_1_15" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Pepper</td>
 <td class="gt_row gt_right" headers="stub_1_15 S1">2.00</td>
 <td class="gt_row gt_right" headers="stub_1_15 S2">2.00</td>
 <td class="gt_row gt_right" headers="stub_1_15 S3">2.00</td>
@@ -1262,7 +1256,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_15 S29">11.00</td>
 </tr>
 <tr class="even">
-<th id="stub_1_16" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Licorice</th>
+<td id="stub_1_16" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Licorice</td>
 <td class="gt_row gt_right" headers="stub_1_16 S1">2.00</td>
 <td class="gt_row gt_right" headers="stub_1_16 S2">4.00</td>
 <td class="gt_row gt_right" headers="stub_1_16 S3">3.00</td>
@@ -1312,30 +1306,30 @@ window.Quarto = {
 <div class="cell">
 <details class="code-fold">
 <summary>Voir le code R</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dissP<span class="ot">&lt;-</span><span class="fu">dissim_partition</span>(df)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>tab<span class="ot">&lt;-</span>dissP<span class="sc">$</span>S1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dissP<span class="ot">&lt;-</span><span class="fu">dissim_partition</span>(df)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>tab<span class="ot">&lt;-</span>dissP<span class="sc">$</span>S1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Ceci donne la matrice de dissimilarité pour l’individu</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="wxwuraejfe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#wxwuraejfe table {
+<div id="cdijrfggol" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cdijrfggol table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#wxwuraejfe thead, #wxwuraejfe tbody, #wxwuraejfe tfoot, #wxwuraejfe tr, #wxwuraejfe td, #wxwuraejfe th {
+#cdijrfggol thead, #cdijrfggol tbody, #cdijrfggol tfoot, #cdijrfggol tr, #cdijrfggol td, #cdijrfggol th {
   border-style: none;
 }
 
-#wxwuraejfe p {
+#cdijrfggol p {
   margin: 0;
   padding: 0;
 }
 
-#wxwuraejfe .gt_table {
+#cdijrfggol .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1361,12 +1355,12 @@ window.Quarto = {
   border-left-color: #D3D3D3;
 }
 
-#wxwuraejfe .gt_caption {
+#cdijrfggol .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#wxwuraejfe .gt_title {
+#cdijrfggol .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1378,7 +1372,7 @@ window.Quarto = {
   border-bottom-width: 0;
 }
 
-#wxwuraejfe .gt_subtitle {
+#cdijrfggol .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1390,7 +1384,7 @@ window.Quarto = {
   border-top-width: 0;
 }
 
-#wxwuraejfe .gt_heading {
+#cdijrfggol .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1402,13 +1396,13 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#wxwuraejfe .gt_bottom_border {
+#cdijrfggol .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wxwuraejfe .gt_col_headings {
+#cdijrfggol .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1423,7 +1417,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#wxwuraejfe .gt_col_heading {
+#cdijrfggol .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1443,7 +1437,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#wxwuraejfe .gt_column_spanner_outer {
+#cdijrfggol .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1455,15 +1449,15 @@ window.Quarto = {
   padding-right: 4px;
 }
 
-#wxwuraejfe .gt_column_spanner_outer:first-child {
+#cdijrfggol .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wxwuraejfe .gt_column_spanner_outer:last-child {
+#cdijrfggol .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wxwuraejfe .gt_column_spanner {
+#cdijrfggol .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1475,11 +1469,11 @@ window.Quarto = {
   width: 100%;
 }
 
-#wxwuraejfe .gt_spanner_row {
+#cdijrfggol .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#wxwuraejfe .gt_group_heading {
+#cdijrfggol .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1505,7 +1499,7 @@ window.Quarto = {
   text-align: left;
 }
 
-#wxwuraejfe .gt_empty_group_heading {
+#cdijrfggol .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1520,15 +1514,15 @@ window.Quarto = {
   vertical-align: middle;
 }
 
-#wxwuraejfe .gt_from_md > :first-child {
+#cdijrfggol .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wxwuraejfe .gt_from_md > :last-child {
+#cdijrfggol .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wxwuraejfe .gt_row {
+#cdijrfggol .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1547,7 +1541,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#wxwuraejfe .gt_stub {
+#cdijrfggol .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1560,7 +1554,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#wxwuraejfe .gt_stub_row_group {
+#cdijrfggol .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1574,15 +1568,15 @@ window.Quarto = {
   vertical-align: top;
 }
 
-#wxwuraejfe .gt_row_group_first td {
+#cdijrfggol .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wxwuraejfe .gt_row_group_first th {
+#cdijrfggol .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#wxwuraejfe .gt_summary_row {
+#cdijrfggol .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1592,16 +1586,16 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#wxwuraejfe .gt_first_summary_row {
+#cdijrfggol .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wxwuraejfe .gt_first_summary_row.thick {
+#cdijrfggol .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wxwuraejfe .gt_last_summary_row {
+#cdijrfggol .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1611,7 +1605,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#wxwuraejfe .gt_grand_summary_row {
+#cdijrfggol .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1621,7 +1615,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#wxwuraejfe .gt_first_grand_summary_row {
+#cdijrfggol .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1631,7 +1625,7 @@ window.Quarto = {
   border-top-color: #D3D3D3;
 }
 
-#wxwuraejfe .gt_last_grand_summary_row_top {
+#cdijrfggol .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1641,11 +1635,11 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#wxwuraejfe .gt_striped {
+#cdijrfggol .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wxwuraejfe .gt_table_body {
+#cdijrfggol .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1654,7 +1648,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#wxwuraejfe .gt_footnotes {
+#cdijrfggol .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1668,7 +1662,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#wxwuraejfe .gt_footnote {
+#cdijrfggol .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1677,7 +1671,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#wxwuraejfe .gt_sourcenotes {
+#cdijrfggol .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1691,7 +1685,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#wxwuraejfe .gt_sourcenote {
+#cdijrfggol .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1699,83 +1693,83 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#wxwuraejfe .gt_left {
+#cdijrfggol .gt_left {
   text-align: left;
 }
 
-#wxwuraejfe .gt_center {
+#cdijrfggol .gt_center {
   text-align: center;
 }
 
-#wxwuraejfe .gt_right {
+#cdijrfggol .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wxwuraejfe .gt_font_normal {
+#cdijrfggol .gt_font_normal {
   font-weight: normal;
 }
 
-#wxwuraejfe .gt_font_bold {
+#cdijrfggol .gt_font_bold {
   font-weight: bold;
 }
 
-#wxwuraejfe .gt_font_italic {
+#cdijrfggol .gt_font_italic {
   font-style: italic;
 }
 
-#wxwuraejfe .gt_super {
+#cdijrfggol .gt_super {
   font-size: 65%;
 }
 
-#wxwuraejfe .gt_footnote_marks {
+#cdijrfggol .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#wxwuraejfe .gt_asterisk {
+#cdijrfggol .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wxwuraejfe .gt_indent_1 {
+#cdijrfggol .gt_indent_1 {
   text-indent: 5px;
 }
 
-#wxwuraejfe .gt_indent_2 {
+#cdijrfggol .gt_indent_2 {
   text-indent: 10px;
 }
 
-#wxwuraejfe .gt_indent_3 {
+#cdijrfggol .gt_indent_3 {
   text-indent: 15px;
 }
 
-#wxwuraejfe .gt_indent_4 {
+#cdijrfggol .gt_indent_4 {
   text-indent: 20px;
 }
 
-#wxwuraejfe .gt_indent_5 {
+#cdijrfggol .gt_indent_5 {
   text-indent: 25px;
 }
 
-#wxwuraejfe .katex-display {
+#cdijrfggol .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#wxwuraejfe div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#cdijrfggol div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading header">
-<td colspan="17" class="gt_heading gt_title gt_font_normal">Matrice de dissimilarité</td>
+<th colspan="17" class="gt_heading gt_title gt_font_normal">Matrice de dissimilarité</th>
 </tr>
 <tr class="gt_heading even">
-<td colspan="17" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Individu 1</td>
+<th colspan="17" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Individu 1</th>
 </tr>
 <tr class="gt_col_headings header">
 <th id="a::stub" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
@@ -1799,7 +1793,7 @@ window.Quarto = {
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<th id="stub_1_1" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Lemon</th>
+<td id="stub_1_1" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Lemon</td>
 <td class="gt_row gt_right" headers="stub_1_1 Lemon">0</td>
 <td class="gt_row gt_right" headers="stub_1_1 Grapefruit">0</td>
 <td class="gt_row gt_right" headers="stub_1_1 Pineapple">1</td>
@@ -1818,7 +1812,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_1 Licorice">1</td>
 </tr>
 <tr class="even">
-<th id="stub_1_2" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Grapefruit</th>
+<td id="stub_1_2" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Grapefruit</td>
 <td class="gt_row gt_right" headers="stub_1_2 Lemon">0</td>
 <td class="gt_row gt_right" headers="stub_1_2 Grapefruit">0</td>
 <td class="gt_row gt_right" headers="stub_1_2 Pineapple">1</td>
@@ -1837,7 +1831,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_2 Licorice">1</td>
 </tr>
 <tr class="odd">
-<th id="stub_1_3" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Pineapple</th>
+<td id="stub_1_3" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Pineapple</td>
 <td class="gt_row gt_right" headers="stub_1_3 Lemon">1</td>
 <td class="gt_row gt_right" headers="stub_1_3 Grapefruit">1</td>
 <td class="gt_row gt_right" headers="stub_1_3 Pineapple">0</td>
@@ -1856,7 +1850,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_3 Licorice">1</td>
 </tr>
 <tr class="even">
-<th id="stub_1_4" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Pear</th>
+<td id="stub_1_4" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Pear</td>
 <td class="gt_row gt_right" headers="stub_1_4 Lemon">0</td>
 <td class="gt_row gt_right" headers="stub_1_4 Grapefruit">0</td>
 <td class="gt_row gt_right" headers="stub_1_4 Pineapple">1</td>
@@ -1875,7 +1869,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_4 Licorice">1</td>
 </tr>
 <tr class="odd">
-<th id="stub_1_5" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Honey</th>
+<td id="stub_1_5" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Honey</td>
 <td class="gt_row gt_right" headers="stub_1_5 Lemon">1</td>
 <td class="gt_row gt_right" headers="stub_1_5 Grapefruit">1</td>
 <td class="gt_row gt_right" headers="stub_1_5 Pineapple">0</td>
@@ -1894,7 +1888,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_5 Licorice">1</td>
 </tr>
 <tr class="even">
-<th id="stub_1_6" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Butter</th>
+<td id="stub_1_6" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Butter</td>
 <td class="gt_row gt_right" headers="stub_1_6 Lemon">1</td>
 <td class="gt_row gt_right" headers="stub_1_6 Grapefruit">1</td>
 <td class="gt_row gt_right" headers="stub_1_6 Pineapple">1</td>
@@ -1913,7 +1907,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_6 Licorice">1</td>
 </tr>
 <tr class="odd">
-<th id="stub_1_7" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Grilledbread</th>
+<td id="stub_1_7" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Grilledbread</td>
 <td class="gt_row gt_right" headers="stub_1_7 Lemon">1</td>
 <td class="gt_row gt_right" headers="stub_1_7 Grapefruit">1</td>
 <td class="gt_row gt_right" headers="stub_1_7 Pineapple">1</td>
@@ -1932,7 +1926,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_7 Licorice">1</td>
 </tr>
 <tr class="even">
-<th id="stub_1_8" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Grilledhazelnut</th>
+<td id="stub_1_8" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Grilledhazelnut</td>
 <td class="gt_row gt_right" headers="stub_1_8 Lemon">0</td>
 <td class="gt_row gt_right" headers="stub_1_8 Grapefruit">0</td>
 <td class="gt_row gt_right" headers="stub_1_8 Pineapple">1</td>
@@ -1951,7 +1945,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_8 Licorice">1</td>
 </tr>
 <tr class="odd">
-<th id="stub_1_9" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Strawberry</th>
+<td id="stub_1_9" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Strawberry</td>
 <td class="gt_row gt_right" headers="stub_1_9 Lemon">0</td>
 <td class="gt_row gt_right" headers="stub_1_9 Grapefruit">0</td>
 <td class="gt_row gt_right" headers="stub_1_9 Pineapple">1</td>
@@ -1970,7 +1964,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_9 Licorice">1</td>
 </tr>
 <tr class="even">
-<th id="stub_1_10" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Raspberry</th>
+<td id="stub_1_10" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Raspberry</td>
 <td class="gt_row gt_right" headers="stub_1_10 Lemon">1</td>
 <td class="gt_row gt_right" headers="stub_1_10 Grapefruit">1</td>
 <td class="gt_row gt_right" headers="stub_1_10 Pineapple">1</td>
@@ -1989,7 +1983,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_10 Licorice">1</td>
 </tr>
 <tr class="odd">
-<th id="stub_1_11" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Cherry</th>
+<td id="stub_1_11" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Cherry</td>
 <td class="gt_row gt_right" headers="stub_1_11 Lemon">1</td>
 <td class="gt_row gt_right" headers="stub_1_11 Grapefruit">1</td>
 <td class="gt_row gt_right" headers="stub_1_11 Pineapple">1</td>
@@ -2008,7 +2002,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_11 Licorice">1</td>
 </tr>
 <tr class="even">
-<th id="stub_1_12" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Blackcurrant</th>
+<td id="stub_1_12" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Blackcurrant</td>
 <td class="gt_row gt_right" headers="stub_1_12 Lemon">1</td>
 <td class="gt_row gt_right" headers="stub_1_12 Grapefruit">1</td>
 <td class="gt_row gt_right" headers="stub_1_12 Pineapple">1</td>
@@ -2027,7 +2021,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_12 Licorice">1</td>
 </tr>
 <tr class="odd">
-<th id="stub_1_13" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Greenpepper</th>
+<td id="stub_1_13" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Greenpepper</td>
 <td class="gt_row gt_right" headers="stub_1_13 Lemon">1</td>
 <td class="gt_row gt_right" headers="stub_1_13 Grapefruit">1</td>
 <td class="gt_row gt_right" headers="stub_1_13 Pineapple">0</td>
@@ -2046,7 +2040,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_13 Licorice">1</td>
 </tr>
 <tr class="even">
-<th id="stub_1_14" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Smoked</th>
+<td id="stub_1_14" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Smoked</td>
 <td class="gt_row gt_right" headers="stub_1_14 Lemon">1</td>
 <td class="gt_row gt_right" headers="stub_1_14 Grapefruit">1</td>
 <td class="gt_row gt_right" headers="stub_1_14 Pineapple">1</td>
@@ -2065,7 +2059,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_14 Licorice">0</td>
 </tr>
 <tr class="odd">
-<th id="stub_1_15" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Pepper</th>
+<td id="stub_1_15" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Pepper</td>
 <td class="gt_row gt_right" headers="stub_1_15 Lemon">1</td>
 <td class="gt_row gt_right" headers="stub_1_15 Grapefruit">1</td>
 <td class="gt_row gt_right" headers="stub_1_15 Pineapple">1</td>
@@ -2084,7 +2078,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_15 Licorice">0</td>
 </tr>
 <tr class="even">
-<th id="stub_1_16" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Licorice</th>
+<td id="stub_1_16" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Licorice</td>
 <td class="gt_row gt_right" headers="stub_1_16 Lemon">1</td>
 <td class="gt_row gt_right" headers="stub_1_16 Grapefruit">1</td>
 <td class="gt_row gt_right" headers="stub_1_16 Pineapple">1</td>
@@ -2122,29 +2116,29 @@ window.Quarto = {
 <div class="cell">
 <details class="code-fold">
 <summary>Voir le code R</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>DissTotal<span class="ot">&lt;-</span><span class="fu">total_dissim</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>DissTotal<span class="ot">&lt;-</span><span class="fu">total_dissim</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>On obtient la matrice de dissimilarité totale :</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="onfezhmylo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#onfezhmylo table {
+<div id="cuvrkluiia" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cuvrkluiia table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#onfezhmylo thead, #onfezhmylo tbody, #onfezhmylo tfoot, #onfezhmylo tr, #onfezhmylo td, #onfezhmylo th {
+#cuvrkluiia thead, #cuvrkluiia tbody, #cuvrkluiia tfoot, #cuvrkluiia tr, #cuvrkluiia td, #cuvrkluiia th {
   border-style: none;
 }
 
-#onfezhmylo p {
+#cuvrkluiia p {
   margin: 0;
   padding: 0;
 }
 
-#onfezhmylo .gt_table {
+#cuvrkluiia .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2170,12 +2164,12 @@ window.Quarto = {
   border-left-color: #D3D3D3;
 }
 
-#onfezhmylo .gt_caption {
+#cuvrkluiia .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#onfezhmylo .gt_title {
+#cuvrkluiia .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2187,7 +2181,7 @@ window.Quarto = {
   border-bottom-width: 0;
 }
 
-#onfezhmylo .gt_subtitle {
+#cuvrkluiia .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2199,7 +2193,7 @@ window.Quarto = {
   border-top-width: 0;
 }
 
-#onfezhmylo .gt_heading {
+#cuvrkluiia .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2211,13 +2205,13 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#onfezhmylo .gt_bottom_border {
+#cuvrkluiia .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#onfezhmylo .gt_col_headings {
+#cuvrkluiia .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2232,7 +2226,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#onfezhmylo .gt_col_heading {
+#cuvrkluiia .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2252,7 +2246,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#onfezhmylo .gt_column_spanner_outer {
+#cuvrkluiia .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2264,15 +2258,15 @@ window.Quarto = {
   padding-right: 4px;
 }
 
-#onfezhmylo .gt_column_spanner_outer:first-child {
+#cuvrkluiia .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#onfezhmylo .gt_column_spanner_outer:last-child {
+#cuvrkluiia .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#onfezhmylo .gt_column_spanner {
+#cuvrkluiia .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2284,11 +2278,11 @@ window.Quarto = {
   width: 100%;
 }
 
-#onfezhmylo .gt_spanner_row {
+#cuvrkluiia .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#onfezhmylo .gt_group_heading {
+#cuvrkluiia .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2314,7 +2308,7 @@ window.Quarto = {
   text-align: left;
 }
 
-#onfezhmylo .gt_empty_group_heading {
+#cuvrkluiia .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2329,15 +2323,15 @@ window.Quarto = {
   vertical-align: middle;
 }
 
-#onfezhmylo .gt_from_md > :first-child {
+#cuvrkluiia .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#onfezhmylo .gt_from_md > :last-child {
+#cuvrkluiia .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#onfezhmylo .gt_row {
+#cuvrkluiia .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2356,7 +2350,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#onfezhmylo .gt_stub {
+#cuvrkluiia .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2369,7 +2363,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#onfezhmylo .gt_stub_row_group {
+#cuvrkluiia .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2383,15 +2377,15 @@ window.Quarto = {
   vertical-align: top;
 }
 
-#onfezhmylo .gt_row_group_first td {
+#cuvrkluiia .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#onfezhmylo .gt_row_group_first th {
+#cuvrkluiia .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#onfezhmylo .gt_summary_row {
+#cuvrkluiia .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2401,16 +2395,16 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#onfezhmylo .gt_first_summary_row {
+#cuvrkluiia .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#onfezhmylo .gt_first_summary_row.thick {
+#cuvrkluiia .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#onfezhmylo .gt_last_summary_row {
+#cuvrkluiia .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2420,7 +2414,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#onfezhmylo .gt_grand_summary_row {
+#cuvrkluiia .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2430,7 +2424,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#onfezhmylo .gt_first_grand_summary_row {
+#cuvrkluiia .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2440,7 +2434,7 @@ window.Quarto = {
   border-top-color: #D3D3D3;
 }
 
-#onfezhmylo .gt_last_grand_summary_row_top {
+#cuvrkluiia .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2450,11 +2444,11 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#onfezhmylo .gt_striped {
+#cuvrkluiia .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#onfezhmylo .gt_table_body {
+#cuvrkluiia .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2463,7 +2457,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#onfezhmylo .gt_footnotes {
+#cuvrkluiia .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2477,7 +2471,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#onfezhmylo .gt_footnote {
+#cuvrkluiia .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2486,7 +2480,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#onfezhmylo .gt_sourcenotes {
+#cuvrkluiia .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2500,7 +2494,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#onfezhmylo .gt_sourcenote {
+#cuvrkluiia .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2508,83 +2502,83 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#onfezhmylo .gt_left {
+#cuvrkluiia .gt_left {
   text-align: left;
 }
 
-#onfezhmylo .gt_center {
+#cuvrkluiia .gt_center {
   text-align: center;
 }
 
-#onfezhmylo .gt_right {
+#cuvrkluiia .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#onfezhmylo .gt_font_normal {
+#cuvrkluiia .gt_font_normal {
   font-weight: normal;
 }
 
-#onfezhmylo .gt_font_bold {
+#cuvrkluiia .gt_font_bold {
   font-weight: bold;
 }
 
-#onfezhmylo .gt_font_italic {
+#cuvrkluiia .gt_font_italic {
   font-style: italic;
 }
 
-#onfezhmylo .gt_super {
+#cuvrkluiia .gt_super {
   font-size: 65%;
 }
 
-#onfezhmylo .gt_footnote_marks {
+#cuvrkluiia .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#onfezhmylo .gt_asterisk {
+#cuvrkluiia .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#onfezhmylo .gt_indent_1 {
+#cuvrkluiia .gt_indent_1 {
   text-indent: 5px;
 }
 
-#onfezhmylo .gt_indent_2 {
+#cuvrkluiia .gt_indent_2 {
   text-indent: 10px;
 }
 
-#onfezhmylo .gt_indent_3 {
+#cuvrkluiia .gt_indent_3 {
   text-indent: 15px;
 }
 
-#onfezhmylo .gt_indent_4 {
+#cuvrkluiia .gt_indent_4 {
   text-indent: 20px;
 }
 
-#onfezhmylo .gt_indent_5 {
+#cuvrkluiia .gt_indent_5 {
   text-indent: 25px;
 }
 
-#onfezhmylo .katex-display {
+#cuvrkluiia .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#onfezhmylo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#cuvrkluiia div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading header">
-<td colspan="17" class="gt_heading gt_title gt_font_normal">Matrice de dissimilarité</td>
+<th colspan="17" class="gt_heading gt_title gt_font_normal">Matrice de dissimilarité</th>
 </tr>
 <tr class="gt_heading even">
-<td colspan="17" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Individu 1</td>
+<th colspan="17" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Individu 1</th>
 </tr>
 <tr class="gt_col_headings header">
 <th id="a::stub" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
@@ -2608,7 +2602,7 @@ window.Quarto = {
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<th id="stub_1_1" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Lemon</th>
+<td id="stub_1_1" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Lemon</td>
 <td class="gt_row gt_right" headers="stub_1_1 Lemon">0</td>
 <td class="gt_row gt_right" headers="stub_1_1 Grapefruit">9</td>
 <td class="gt_row gt_right" headers="stub_1_1 Pineapple">20</td>
@@ -2627,7 +2621,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_1 Licorice">28</td>
 </tr>
 <tr class="even">
-<th id="stub_1_2" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Grapefruit</th>
+<td id="stub_1_2" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Grapefruit</td>
 <td class="gt_row gt_right" headers="stub_1_2 Lemon">9</td>
 <td class="gt_row gt_right" headers="stub_1_2 Grapefruit">0</td>
 <td class="gt_row gt_right" headers="stub_1_2 Pineapple">17</td>
@@ -2646,7 +2640,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_2 Licorice">27</td>
 </tr>
 <tr class="odd">
-<th id="stub_1_3" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Pineapple</th>
+<td id="stub_1_3" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Pineapple</td>
 <td class="gt_row gt_right" headers="stub_1_3 Lemon">20</td>
 <td class="gt_row gt_right" headers="stub_1_3 Grapefruit">17</td>
 <td class="gt_row gt_right" headers="stub_1_3 Pineapple">0</td>
@@ -2665,7 +2659,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_3 Licorice">29</td>
 </tr>
 <tr class="even">
-<th id="stub_1_4" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Pear</th>
+<td id="stub_1_4" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Pear</td>
 <td class="gt_row gt_right" headers="stub_1_4 Lemon">15</td>
 <td class="gt_row gt_right" headers="stub_1_4 Grapefruit">17</td>
 <td class="gt_row gt_right" headers="stub_1_4 Pineapple">14</td>
@@ -2684,7 +2678,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_4 Licorice">28</td>
 </tr>
 <tr class="odd">
-<th id="stub_1_5" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Honey</th>
+<td id="stub_1_5" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Honey</td>
 <td class="gt_row gt_right" headers="stub_1_5 Lemon">26</td>
 <td class="gt_row gt_right" headers="stub_1_5 Grapefruit">26</td>
 <td class="gt_row gt_right" headers="stub_1_5 Pineapple">26</td>
@@ -2703,7 +2697,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_5 Licorice">21</td>
 </tr>
 <tr class="even">
-<th id="stub_1_6" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Butter</th>
+<td id="stub_1_6" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Butter</td>
 <td class="gt_row gt_right" headers="stub_1_6 Lemon">28</td>
 <td class="gt_row gt_right" headers="stub_1_6 Grapefruit">27</td>
 <td class="gt_row gt_right" headers="stub_1_6 Pineapple">26</td>
@@ -2722,7 +2716,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_6 Licorice">26</td>
 </tr>
 <tr class="odd">
-<th id="stub_1_7" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Grilledbread</th>
+<td id="stub_1_7" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Grilledbread</td>
 <td class="gt_row gt_right" headers="stub_1_7 Lemon">29</td>
 <td class="gt_row gt_right" headers="stub_1_7 Grapefruit">29</td>
 <td class="gt_row gt_right" headers="stub_1_7 Pineapple">28</td>
@@ -2741,7 +2735,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_7 Licorice">23</td>
 </tr>
 <tr class="even">
-<th id="stub_1_8" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Grilledhazelnut</th>
+<td id="stub_1_8" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Grilledhazelnut</td>
 <td class="gt_row gt_right" headers="stub_1_8 Lemon">27</td>
 <td class="gt_row gt_right" headers="stub_1_8 Grapefruit">27</td>
 <td class="gt_row gt_right" headers="stub_1_8 Pineapple">28</td>
@@ -2760,7 +2754,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_8 Licorice">25</td>
 </tr>
 <tr class="odd">
-<th id="stub_1_9" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Strawberry</th>
+<td id="stub_1_9" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Strawberry</td>
 <td class="gt_row gt_right" headers="stub_1_9 Lemon">19</td>
 <td class="gt_row gt_right" headers="stub_1_9 Grapefruit">19</td>
 <td class="gt_row gt_right" headers="stub_1_9 Pineapple">13</td>
@@ -2779,7 +2773,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_9 Licorice">29</td>
 </tr>
 <tr class="even">
-<th id="stub_1_10" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Raspberry</th>
+<td id="stub_1_10" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Raspberry</td>
 <td class="gt_row gt_right" headers="stub_1_10 Lemon">19</td>
 <td class="gt_row gt_right" headers="stub_1_10 Grapefruit">22</td>
 <td class="gt_row gt_right" headers="stub_1_10 Pineapple">18</td>
@@ -2798,7 +2792,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_10 Licorice">26</td>
 </tr>
 <tr class="odd">
-<th id="stub_1_11" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Cherry</th>
+<td id="stub_1_11" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Cherry</td>
 <td class="gt_row gt_right" headers="stub_1_11 Lemon">24</td>
 <td class="gt_row gt_right" headers="stub_1_11 Grapefruit">25</td>
 <td class="gt_row gt_right" headers="stub_1_11 Pineapple">21</td>
@@ -2817,7 +2811,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_11 Licorice">27</td>
 </tr>
 <tr class="even">
-<th id="stub_1_12" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Blackcurrant</th>
+<td id="stub_1_12" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Blackcurrant</td>
 <td class="gt_row gt_right" headers="stub_1_12 Lemon">23</td>
 <td class="gt_row gt_right" headers="stub_1_12 Grapefruit">23</td>
 <td class="gt_row gt_right" headers="stub_1_12 Pineapple">23</td>
@@ -2836,7 +2830,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_12 Licorice">26</td>
 </tr>
 <tr class="odd">
-<th id="stub_1_13" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Greenpepper</th>
+<td id="stub_1_13" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Greenpepper</td>
 <td class="gt_row gt_right" headers="stub_1_13 Lemon">27</td>
 <td class="gt_row gt_right" headers="stub_1_13 Grapefruit">25</td>
 <td class="gt_row gt_right" headers="stub_1_13 Pineapple">24</td>
@@ -2855,7 +2849,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_13 Licorice">24</td>
 </tr>
 <tr class="even">
-<th id="stub_1_14" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Smoked</th>
+<td id="stub_1_14" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Smoked</td>
 <td class="gt_row gt_right" headers="stub_1_14 Lemon">29</td>
 <td class="gt_row gt_right" headers="stub_1_14 Grapefruit">29</td>
 <td class="gt_row gt_right" headers="stub_1_14 Pineapple">29</td>
@@ -2874,7 +2868,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_14 Licorice">20</td>
 </tr>
 <tr class="odd">
-<th id="stub_1_15" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Pepper</th>
+<td id="stub_1_15" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Pepper</td>
 <td class="gt_row gt_right" headers="stub_1_15 Lemon">23</td>
 <td class="gt_row gt_right" headers="stub_1_15 Grapefruit">23</td>
 <td class="gt_row gt_right" headers="stub_1_15 Pineapple">27</td>
@@ -2893,7 +2887,7 @@ window.Quarto = {
 <td class="gt_row gt_right" headers="stub_1_15 Licorice">23</td>
 </tr>
 <tr class="even">
-<th id="stub_1_16" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Licorice</th>
+<td id="stub_1_16" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Licorice</td>
 <td class="gt_row gt_right" headers="stub_1_16 Lemon">28</td>
 <td class="gt_row gt_right" headers="stub_1_16 Grapefruit">27</td>
 <td class="gt_row gt_right" headers="stub_1_16 Pineapple">29</td>
@@ -2950,7 +2944,7 @@ window.Quarto = {
 <div class="cell">
 <details class="code-fold">
 <summary>Voir le code R</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>stress<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="cn">NA</span>,<span class="dv">6</span>)</span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>stress<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="cn">NA</span>,<span class="dv">6</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># getStress donne le stress de Kruskal (ie normalisé)</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>){</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -2963,7 +2957,7 @@ window.Quarto = {
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Choix du nombre de dimension"</span>,</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">x=</span><span class="st">"Nb de Dimensions"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">x=</span><span class="st">"Nb de Dimensions"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -2979,8 +2973,8 @@ window.Quarto = {
 <div class="cell">
 <details class="code-fold">
 <summary>Voir le code R</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>k<span class="ot">=</span><span class="dv">3</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mds_plot</span>(df,<span class="at">k=</span><span class="dv">3</span>,<span class="at">n_boot =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>k<span class="ot">=</span><span class="dv">3</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mds_plot</span>(df,<span class="at">k=</span><span class="dv">3</span>,<span class="at">n_boot =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -3001,7 +2995,7 @@ window.Quarto = {
 <div class="cell">
 <details class="code-fold">
 <summary>Voir le code R</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mds_plot</span>(df,<span class="at">k=</span><span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mds_plot</span>(df,<span class="at">k=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -3012,7 +3006,7 @@ window.Quarto = {
 </div>
 <details class="code-fold">
 <summary>Voir le code R</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mds_plot</span>(df,<span class="at">k=</span><span class="dv">3</span>,<span class="at">dim=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mds_plot</span>(df,<span class="at">k=</span><span class="dv">3</span>,<span class="at">dim=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -3026,6 +3020,1154 @@ window.Quarto = {
 <section id="informations-additionnelles" class="level2" data-number="2.8">
 <h2 data-number="2.8" class="anchored" data-anchor-id="informations-additionnelles"><span class="header-section-number">2.8</span> Informations additionnelles</h2>
 <p>On propose aux 31 sujets une liste de 36 descripteurs pour les 16 produits considérés. On obtient la table de contingence suivante :</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="ompnapqvuz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ompnapqvuz table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ompnapqvuz thead, #ompnapqvuz tbody, #ompnapqvuz tfoot, #ompnapqvuz tr, #ompnapqvuz td, #ompnapqvuz th {
+  border-style: none;
+}
+
+#ompnapqvuz p {
+  margin: 0;
+  padding: 0;
+}
+
+#ompnapqvuz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ompnapqvuz .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ompnapqvuz .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ompnapqvuz .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ompnapqvuz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ompnapqvuz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ompnapqvuz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ompnapqvuz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ompnapqvuz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ompnapqvuz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ompnapqvuz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ompnapqvuz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ompnapqvuz .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ompnapqvuz .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ompnapqvuz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ompnapqvuz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ompnapqvuz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ompnapqvuz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ompnapqvuz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ompnapqvuz .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ompnapqvuz .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ompnapqvuz .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ompnapqvuz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ompnapqvuz .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ompnapqvuz .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ompnapqvuz .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ompnapqvuz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ompnapqvuz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ompnapqvuz .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ompnapqvuz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ompnapqvuz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ompnapqvuz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ompnapqvuz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ompnapqvuz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ompnapqvuz .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ompnapqvuz .gt_left {
+  text-align: left;
+}
+
+#ompnapqvuz .gt_center {
+  text-align: center;
+}
+
+#ompnapqvuz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ompnapqvuz .gt_font_normal {
+  font-weight: normal;
+}
+
+#ompnapqvuz .gt_font_bold {
+  font-weight: bold;
+}
+
+#ompnapqvuz .gt_font_italic {
+  font-style: italic;
+}
+
+#ompnapqvuz .gt_super {
+  font-size: 65%;
+}
+
+#ompnapqvuz .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ompnapqvuz .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ompnapqvuz .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ompnapqvuz .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ompnapqvuz .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ompnapqvuz .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ompnapqvuz .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#ompnapqvuz .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ompnapqvuz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<th colspan="38" class="gt_heading gt_title gt_font_normal">Données aditionnelles</th>
+</tr>
+<tr class="gt_heading even">
+<th colspan="38" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">caractérisation des 16 produits</th>
+</tr>
+<tr class="gt_col_headings header">
+<th id="a::stub" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th id="X" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">X</th>
+<th id="Acid" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Acid</th>
+<th id="Smoked" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Smoked</th>
+<th id="Heady" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Heady</th>
+<th id="Citrus" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Citrus</th>
+<th id="Lemon" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Lemon</th>
+<th id="Cake" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Cake</th>
+<th id="Milk" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Milk</th>
+<th id="Woody" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Woody</th>
+<th id="Grain" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Grain</th>
+<th id="Low" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Low</th>
+<th id="Redfruit" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Redfruit</th>
+<th id="Grilled" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Grilled</th>
+<th id="Strong" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Strong</th>
+<th id="Fat" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Fat</th>
+<th id="Vegetal" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Vegetal</th>
+<th id="Medicine" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Medicine</th>
+<th id="Chemical" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Chemical</th>
+<th id="Licorice" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Licorice</th>
+<th id="Bread" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Bread</th>
+<th id="Alcohol" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Alcohol</th>
+<th id="Almond" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Almond</th>
+<th id="Caramel" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Caramel</th>
+<th id="Coal" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Coal</th>
+<th id="Unpleasant" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Unpleasant</th>
+<th id="Soft" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Soft</th>
+<th id="Pepper" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Pepper</th>
+<th id="Flower" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Flower</th>
+<th id="Fresh" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Fresh</th>
+<th id="Red" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Red</th>
+<th id="Fruit" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Fruit</th>
+<th id="Natural" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Natural</th>
+<th id="Spicy" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Spicy</th>
+<th id="Sugar" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Sugar</th>
+<th id="Hot" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Hot</th>
+<th id="Pleasant" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Pleasant</th>
+<th id="Candy" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="background-color: #ADD8E6" scope="col">Candy</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td id="stub_1_1" class="gt_row gt_right gt_stub" data-quarto-table-cell-role="th" scope="row">1</td>
+<td class="gt_row gt_left" headers="stub_1_1 X">Lemon</td>
+<td class="gt_row gt_right" headers="stub_1_1 Acid">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Smoked">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Heady">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Citrus">7.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Lemon">11.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Cake">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Milk">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Woody">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Grain">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Low">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Redfruit">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Grilled">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Strong">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Fat">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Vegetal">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Medicine">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Chemical">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Licorice">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Bread">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Alcohol">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Almond">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Caramel">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Coal">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Unpleasant">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Soft">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Pepper">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Flower">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Fresh">5.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Red">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Fruit">11.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Natural">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Spicy">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Sugar">5.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Hot">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Pleasant">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Candy">5.00</td>
+</tr>
+<tr class="even">
+<td id="stub_1_2" class="gt_row gt_right gt_stub" data-quarto-table-cell-role="th" scope="row">2</td>
+<td class="gt_row gt_left" headers="stub_1_2 X">Grapefruit</td>
+<td class="gt_row gt_right" headers="stub_1_2 Acid">5.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Smoked">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Heady">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Citrus">9.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Lemon">9.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Cake">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Milk">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Woody">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Grain">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Low">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Redfruit">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Grilled">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Strong">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Fat">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Vegetal">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Medicine">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Chemical">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Licorice">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Bread">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Alcohol">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Almond">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Caramel">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Coal">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Unpleasant">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Soft">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Pepper">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Flower">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Fresh">4.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Red">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Fruit">13.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Natural">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Spicy">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Sugar">4.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Hot">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Pleasant">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 Candy">3.00</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_3" class="gt_row gt_right gt_stub" data-quarto-table-cell-role="th" scope="row">3</td>
+<td class="gt_row gt_left" headers="stub_1_3 X">Pineapple</td>
+<td class="gt_row gt_right" headers="stub_1_3 Acid">5.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Smoked">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Heady">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Citrus">5.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Lemon">4.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Cake">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Milk">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Woody">4.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Grain">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Low">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Redfruit">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Grilled">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Strong">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Fat">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Vegetal">4.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Medicine">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Chemical">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Licorice">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Bread">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Alcohol">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Almond">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Caramel">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Coal">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Unpleasant">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Soft">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Pepper">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Flower">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Fresh">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Red">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Fruit">13.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Natural">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Spicy">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Sugar">9.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Hot">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Pleasant">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 Candy">8.00</td>
+</tr>
+<tr class="even">
+<td id="stub_1_4" class="gt_row gt_right gt_stub" data-quarto-table-cell-role="th" scope="row">4</td>
+<td class="gt_row gt_left" headers="stub_1_4 X">Pear</td>
+<td class="gt_row gt_right" headers="stub_1_4 Acid">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Smoked">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Heady">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Citrus">4.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Lemon">5.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Cake">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Milk">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Woody">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Grain">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Low">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Redfruit">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Grilled">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Strong">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Fat">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Vegetal">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Medicine">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Chemical">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Licorice">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Bread">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Alcohol">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Almond">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Caramel">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Coal">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Unpleasant">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Soft">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Pepper">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Flower">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Fresh">4.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Red">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Fruit">15.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Natural">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Spicy">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Sugar">10.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Hot">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Pleasant">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 Candy">13.00</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_5" class="gt_row gt_right gt_stub" data-quarto-table-cell-role="th" scope="row">5</td>
+<td class="gt_row gt_left" headers="stub_1_5 X">Honey</td>
+<td class="gt_row gt_right" headers="stub_1_5 Acid">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Smoked">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Heady">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Citrus">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Lemon">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Cake">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Milk">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Woody">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Grain">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Low">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Redfruit">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Grilled">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Strong">7.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Fat">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Vegetal">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Medicine">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Chemical">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Licorice">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Bread">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Alcohol">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Almond">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Caramel">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Coal">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Unpleasant">8.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Soft">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Pepper">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Flower">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Fresh">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Red">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Fruit">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Natural">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Spicy">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Sugar">4.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Hot">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Pleasant">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 Candy">1.00</td>
+</tr>
+<tr class="even">
+<td id="stub_1_6" class="gt_row gt_right gt_stub" data-quarto-table-cell-role="th" scope="row">6</td>
+<td class="gt_row gt_left" headers="stub_1_6 X">Butter</td>
+<td class="gt_row gt_right" headers="stub_1_6 Acid">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Smoked">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Heady">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Citrus">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Lemon">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Cake">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Milk">5.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Woody">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Grain">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Low">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Redfruit">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Grilled">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Strong">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Fat">6.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Vegetal">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Medicine">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Chemical">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Licorice">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Bread">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Alcohol">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Almond">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Caramel">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Coal">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Unpleasant">4.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Soft">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Pepper">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Flower">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Fresh">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Red">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Fruit">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Natural">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Spicy">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Sugar">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Hot">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Pleasant">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 Candy">2.00</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_7" class="gt_row gt_right gt_stub" data-quarto-table-cell-role="th" scope="row">7</td>
+<td class="gt_row gt_left" headers="stub_1_7 X">Grilledbread</td>
+<td class="gt_row gt_right" headers="stub_1_7 Acid">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Smoked">5.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Heady">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Citrus">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Lemon">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Cake">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Milk">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Woody">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Grain">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Low">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Redfruit">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Grilled">5.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Strong">5.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Fat">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Vegetal">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Medicine">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Chemical">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Licorice">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Bread">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Alcohol">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Almond">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Caramel">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Coal">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Unpleasant">8.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Soft">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Pepper">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Flower">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Fresh">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Red">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Fruit">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Natural">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Spicy">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Sugar">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Hot">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Pleasant">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_7 Candy">0.00</td>
+</tr>
+<tr class="even">
+<td id="stub_1_8" class="gt_row gt_right gt_stub" data-quarto-table-cell-role="th" scope="row">8</td>
+<td class="gt_row gt_left" headers="stub_1_8 X">Grilledhazelnut</td>
+<td class="gt_row gt_right" headers="stub_1_8 Acid">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Smoked">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Heady">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Citrus">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Lemon">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Cake">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Milk">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Woody">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Grain">6.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Low">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Redfruit">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Grilled">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Strong">4.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Fat">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Vegetal">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Medicine">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Chemical">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Licorice">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Bread">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Alcohol">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Almond">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Caramel">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Coal">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Unpleasant">5.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Soft">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Pepper">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Flower">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Fresh">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Red">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Fruit">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Natural">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Spicy">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Sugar">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Hot">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Pleasant">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_8 Candy">0.00</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_9" class="gt_row gt_right gt_stub" data-quarto-table-cell-role="th" scope="row">9</td>
+<td class="gt_row gt_left" headers="stub_1_9 X">Strawberry</td>
+<td class="gt_row gt_right" headers="stub_1_9 Acid">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Smoked">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Heady">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Citrus">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Lemon">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Cake">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Milk">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Woody">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Grain">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Low">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Redfruit">5.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Grilled">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Strong">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Fat">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Vegetal">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Medicine">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Chemical">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Licorice">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Bread">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Alcohol">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Almond">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Caramel">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Coal">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Unpleasant">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Soft">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Pepper">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Flower">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Fresh">4.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Red">5.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Fruit">14.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Natural">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Spicy">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Sugar">13.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Hot">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Pleasant">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_9 Candy">14.00</td>
+</tr>
+<tr class="even">
+<td id="stub_1_10" class="gt_row gt_right gt_stub" data-quarto-table-cell-role="th" scope="row">10</td>
+<td class="gt_row gt_left" headers="stub_1_10 X">Raspberry</td>
+<td class="gt_row gt_right" headers="stub_1_10 Acid">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Smoked">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Heady">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Citrus">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Lemon">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Cake">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Milk">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Woody">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Grain">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Low">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Redfruit">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Grilled">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Strong">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Fat">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Vegetal">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Medicine">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Chemical">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Licorice">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Bread">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Alcohol">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Almond">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Caramel">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Coal">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Unpleasant">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Soft">5.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Pepper">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Flower">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Fresh">4.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Red">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Fruit">12.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Natural">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Spicy">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Sugar">10.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Hot">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Pleasant">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_10 Candy">9.00</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_11" class="gt_row gt_right gt_stub" data-quarto-table-cell-role="th" scope="row">11</td>
+<td class="gt_row gt_left" headers="stub_1_11 X">Cherry</td>
+<td class="gt_row gt_right" headers="stub_1_11 Acid">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Smoked">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Heady">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Citrus">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Lemon">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Cake">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Milk">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Woody">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Grain">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Low">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Redfruit">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Grilled">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Strong">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Fat">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Vegetal">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Medicine">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Chemical">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Licorice">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Bread">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Alcohol">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Almond">9.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Caramel">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Coal">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Unpleasant">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Soft">4.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Pepper">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Flower">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Fresh">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Red">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Fruit">4.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Natural">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Spicy">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Sugar">5.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Hot">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Pleasant">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_11 Candy">5.00</td>
+</tr>
+<tr class="even">
+<td id="stub_1_12" class="gt_row gt_right gt_stub" data-quarto-table-cell-role="th" scope="row">12</td>
+<td class="gt_row gt_left" headers="stub_1_12 X">Blackcurrant</td>
+<td class="gt_row gt_right" headers="stub_1_12 Acid">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Smoked">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Heady">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Citrus">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Lemon">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Cake">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Milk">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Woody">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Grain">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Low">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Redfruit">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Grilled">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Strong">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Fat">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Vegetal">4.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Medicine">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Chemical">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Licorice">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Bread">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Alcohol">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Almond">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Caramel">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Coal">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Unpleasant">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Soft">5.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Pepper">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Flower">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Fresh">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Red">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Fruit">8.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Natural">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Spicy">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Sugar">4.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Hot">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Pleasant">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_12 Candy">2.00</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_13" class="gt_row gt_right gt_stub" data-quarto-table-cell-role="th" scope="row">13</td>
+<td class="gt_row gt_left" headers="stub_1_13 X">Greenpepper</td>
+<td class="gt_row gt_right" headers="stub_1_13 Acid">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Smoked">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Heady">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Citrus">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Lemon">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Cake">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Milk">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Woody">6.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Grain">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Low">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Redfruit">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Grilled">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Strong">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Fat">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Vegetal">8.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Medicine">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Chemical">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Licorice">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Bread">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Alcohol">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Almond">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Caramel">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Coal">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Unpleasant">5.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Soft">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Pepper">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Flower">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Fresh">4.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Red">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Fruit">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Natural">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Spicy">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Sugar">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Hot">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Pleasant">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_13 Candy">0.00</td>
+</tr>
+<tr class="even">
+<td id="stub_1_14" class="gt_row gt_right gt_stub" data-quarto-table-cell-role="th" scope="row">14</td>
+<td class="gt_row gt_left" headers="stub_1_14 X">Smoked</td>
+<td class="gt_row gt_right" headers="stub_1_14 Acid">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Smoked">19.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Heady">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Citrus">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Lemon">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Cake">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Milk">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Woody">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Grain">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Low">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Redfruit">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Grilled">6.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Strong">7.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Fat">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Vegetal">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Medicine">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Chemical">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Licorice">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Bread">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Alcohol">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Almond">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Caramel">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Coal">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Unpleasant">4.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Soft">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Pepper">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Flower">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Fresh">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Red">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Fruit">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Natural">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Spicy">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Sugar">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Hot">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Pleasant">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_14 Candy">1.00</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_15" class="gt_row gt_right gt_stub" data-quarto-table-cell-role="th" scope="row">15</td>
+<td class="gt_row gt_left" headers="stub_1_15 X">Pepper</td>
+<td class="gt_row gt_right" headers="stub_1_15 Acid">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Smoked">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Heady">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Citrus">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Lemon">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Cake">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Milk">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Woody">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Grain">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Low">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Redfruit">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Grilled">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Strong">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Fat">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Vegetal">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Medicine">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Chemical">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Licorice">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Bread">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Alcohol">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Almond">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Caramel">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Coal">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Unpleasant">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Soft">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Pepper">8.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Flower">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Fresh">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Red">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Fruit">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Natural">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Spicy">4.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Sugar">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Hot">7.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Pleasant">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_15 Candy">1.00</td>
+</tr>
+<tr class="even">
+<td id="stub_1_16" class="gt_row gt_right gt_stub" data-quarto-table-cell-role="th" scope="row">16</td>
+<td class="gt_row gt_left" headers="stub_1_16 X">Licorice</td>
+<td class="gt_row gt_right" headers="stub_1_16 Acid">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Smoked">5.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Heady">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Citrus">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Lemon">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Cake">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Milk">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Woody">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Grain">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Low">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Redfruit">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Grilled">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Strong">5.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Fat">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Vegetal">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Medicine">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Chemical">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Licorice">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Bread">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Alcohol">3.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Almond">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Caramel">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Coal">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Unpleasant">4.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Soft">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Pepper">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Flower">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Fresh">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Red">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Fruit">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Natural">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Spicy">2.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Sugar">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Hot">4.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Pleasant">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_16 Candy">1.00</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 <section id="caractérisation-des-axes-latents" class="level2" data-number="2.9">
 <h2 data-number="2.9" class="anchored" data-anchor-id="caractérisation-des-axes-latents"><span class="header-section-number">2.9</span> Caractérisation des axes latents</h2>
@@ -3038,31 +4180,731 @@ window.Quarto = {
 <div class="cell">
 <details class="code-fold">
 <summary>Voir le code R</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>beta<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="fu">matrix</span>(<span class="cn">NA</span>,<span class="at">nrow=</span><span class="fu">dim</span>(ia)[<span class="dv">2</span>],<span class="at">ncol=</span><span class="fu">dim</span>(config)[<span class="dv">2</span>]))</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(beta)[<span class="dv">1</span>]){</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  beta[i,]<span class="ot">&lt;-</span><span class="fu">coef</span>(<span class="fu">lm</span>(AromaTerms[,i]<span class="sc">~</span><span class="fu">as.matrix</span>(config)))[<span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(beta)<span class="ot">&lt;-</span><span class="fu">colnames</span>(ia)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(beta)[<span class="dv">1</span><span class="sc">:</span>ndim]<span class="ot">&lt;-</span><span class="fu">paste</span>(<span class="st">"Dim"</span>,<span class="dv">1</span><span class="sc">:</span>ndim,<span class="at">sep=</span><span class="st">""</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>k<span class="ot">=</span><span class="dv">3</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df2<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"AromaTerms.csv"</span>,<span class="at">row.names=</span><span class="dv">1</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>config<span class="ot">&lt;-</span><span class="fu">compute_mds</span>(DissTotal,<span class="at">k=</span>k)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>beta<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="fu">matrix</span>(<span class="cn">NA</span>,<span class="at">nrow=</span><span class="fu">dim</span>(df2)[<span class="dv">2</span>],<span class="at">ncol=</span><span class="fu">dim</span>(config<span class="sc">$</span>points)[<span class="dv">2</span>]))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(beta)<span class="ot">&lt;-</span><span class="fu">colnames</span>(df2)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(beta)[<span class="dv">1</span><span class="sc">:</span>k]<span class="ot">&lt;-</span><span class="fu">paste</span>(<span class="st">"Dim"</span>,<span class="dv">1</span><span class="sc">:</span>k,<span class="at">sep=</span><span class="st">""</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(beta)[<span class="dv">1</span>]){</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  beta[i,]<span class="ot">&lt;-</span><span class="fu">coef</span>(<span class="fu">lm</span>(df2[,i]<span class="sc">~</span><span class="fu">as.matrix</span>(config<span class="sc">$</span>points)))[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>On obtient :</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="dydymvkpzp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#dydymvkpzp table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#dydymvkpzp thead, #dydymvkpzp tbody, #dydymvkpzp tfoot, #dydymvkpzp tr, #dydymvkpzp td, #dydymvkpzp th {
+  border-style: none;
+}
+
+#dydymvkpzp p {
+  margin: 0;
+  padding: 0;
+}
+
+#dydymvkpzp .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#dydymvkpzp .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#dydymvkpzp .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#dydymvkpzp .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#dydymvkpzp .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#dydymvkpzp .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dydymvkpzp .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#dydymvkpzp .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#dydymvkpzp .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#dydymvkpzp .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#dydymvkpzp .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#dydymvkpzp .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#dydymvkpzp .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#dydymvkpzp .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#dydymvkpzp .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#dydymvkpzp .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#dydymvkpzp .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#dydymvkpzp .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#dydymvkpzp .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dydymvkpzp .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#dydymvkpzp .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#dydymvkpzp .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#dydymvkpzp .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dydymvkpzp .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#dydymvkpzp .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#dydymvkpzp .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dydymvkpzp .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dydymvkpzp .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#dydymvkpzp .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dydymvkpzp .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#dydymvkpzp .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dydymvkpzp .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#dydymvkpzp .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dydymvkpzp .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#dydymvkpzp .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dydymvkpzp .gt_left {
+  text-align: left;
+}
+
+#dydymvkpzp .gt_center {
+  text-align: center;
+}
+
+#dydymvkpzp .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#dydymvkpzp .gt_font_normal {
+  font-weight: normal;
+}
+
+#dydymvkpzp .gt_font_bold {
+  font-weight: bold;
+}
+
+#dydymvkpzp .gt_font_italic {
+  font-style: italic;
+}
+
+#dydymvkpzp .gt_super {
+  font-size: 65%;
+}
+
+#dydymvkpzp .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#dydymvkpzp .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#dydymvkpzp .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#dydymvkpzp .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#dydymvkpzp .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#dydymvkpzp .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#dydymvkpzp .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#dydymvkpzp .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#dydymvkpzp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<th colspan="4" class="gt_heading gt_title gt_font_normal">Coefficients de régression</th>
+</tr>
+<tr class="gt_heading even">
+<th colspan="4" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">caractérisation des Dimensions</th>
+</tr>
+<tr class="gt_col_headings header">
+<th id="a::stub" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th id="Dim1" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Dim1</th>
+<th id="Dim2" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Dim2</th>
+<th id="Dim3" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Dim3</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td id="stub_1_1" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Acid</td>
+<td class="gt_row gt_right" headers="stub_1_1 Dim1">−2.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 Dim2">−1.66</td>
+<td class="gt_row gt_right" headers="stub_1_1 Dim3">0.22</td>
+</tr>
+<tr class="even">
+<td id="stub_1_2" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Smoked</td>
+<td class="gt_row gt_right" headers="stub_1_2 Dim1">5.86</td>
+<td class="gt_row gt_right" headers="stub_1_2 Dim2">−2.78</td>
+<td class="gt_row gt_right" headers="stub_1_2 Dim3">−2.25</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_3" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Heady</td>
+<td class="gt_row gt_right" headers="stub_1_3 Dim1">−0.35</td>
+<td class="gt_row gt_right" headers="stub_1_3 Dim2">0.39</td>
+<td class="gt_row gt_right" headers="stub_1_3 Dim3">0.20</td>
+</tr>
+<tr class="even">
+<td id="stub_1_4" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Citrus</td>
+<td class="gt_row gt_right" headers="stub_1_4 Dim1">−3.60</td>
+<td class="gt_row gt_right" headers="stub_1_4 Dim2">−1.88</td>
+<td class="gt_row gt_right" headers="stub_1_4 Dim3">1.30</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_5" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Lemon</td>
+<td class="gt_row gt_right" headers="stub_1_5 Dim1">−3.94</td>
+<td class="gt_row gt_right" headers="stub_1_5 Dim2">−3.29</td>
+<td class="gt_row gt_right" headers="stub_1_5 Dim3">3.09</td>
+</tr>
+<tr class="even">
+<td id="stub_1_6" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Cake</td>
+<td class="gt_row gt_right" headers="stub_1_6 Dim1">0.36</td>
+<td class="gt_row gt_right" headers="stub_1_6 Dim2">0.78</td>
+<td class="gt_row gt_right" headers="stub_1_6 Dim3">−1.38</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_7" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Milk</td>
+<td class="gt_row gt_right" headers="stub_1_7 Dim1">0.66</td>
+<td class="gt_row gt_right" headers="stub_1_7 Dim2">2.01</td>
+<td class="gt_row gt_right" headers="stub_1_7 Dim3">1.34</td>
+</tr>
+<tr class="even">
+<td id="stub_1_8" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Woody</td>
+<td class="gt_row gt_right" headers="stub_1_8 Dim1">1.01</td>
+<td class="gt_row gt_right" headers="stub_1_8 Dim2">−0.63</td>
+<td class="gt_row gt_right" headers="stub_1_8 Dim3">−2.96</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_9" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Grain</td>
+<td class="gt_row gt_right" headers="stub_1_9 Dim1">1.68</td>
+<td class="gt_row gt_right" headers="stub_1_9 Dim2">3.07</td>
+<td class="gt_row gt_right" headers="stub_1_9 Dim3">0.13</td>
+</tr>
+<tr class="even">
+<td id="stub_1_10" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Low</td>
+<td class="gt_row gt_right" headers="stub_1_10 Dim1">0.26</td>
+<td class="gt_row gt_right" headers="stub_1_10 Dim2">1.14</td>
+<td class="gt_row gt_right" headers="stub_1_10 Dim3">−0.17</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_11" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Redfruit</td>
+<td class="gt_row gt_right" headers="stub_1_11 Dim1">−1.93</td>
+<td class="gt_row gt_right" headers="stub_1_11 Dim2">0.10</td>
+<td class="gt_row gt_right" headers="stub_1_11 Dim3">−0.39</td>
+</tr>
+<tr class="even">
+<td id="stub_1_12" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Grilled</td>
+<td class="gt_row gt_right" headers="stub_1_12 Dim1">3.18</td>
+<td class="gt_row gt_right" headers="stub_1_12 Dim2">0.21</td>
+<td class="gt_row gt_right" headers="stub_1_12 Dim3">−0.67</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_13" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Strong</td>
+<td class="gt_row gt_right" headers="stub_1_13 Dim1">2.31</td>
+<td class="gt_row gt_right" headers="stub_1_13 Dim2">−0.55</td>
+<td class="gt_row gt_right" headers="stub_1_13 Dim3">1.61</td>
+</tr>
+<tr class="even">
+<td id="stub_1_14" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Fat</td>
+<td class="gt_row gt_right" headers="stub_1_14 Dim1">0.75</td>
+<td class="gt_row gt_right" headers="stub_1_14 Dim2">2.26</td>
+<td class="gt_row gt_right" headers="stub_1_14 Dim3">1.21</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_15" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Vegetal</td>
+<td class="gt_row gt_right" headers="stub_1_15 Dim1">0.21</td>
+<td class="gt_row gt_right" headers="stub_1_15 Dim2">−0.26</td>
+<td class="gt_row gt_right" headers="stub_1_15 Dim3">−2.21</td>
+</tr>
+<tr class="even">
+<td id="stub_1_16" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Medicine</td>
+<td class="gt_row gt_right" headers="stub_1_16 Dim1">0.69</td>
+<td class="gt_row gt_right" headers="stub_1_16 Dim2">−1.34</td>
+<td class="gt_row gt_right" headers="stub_1_16 Dim3">0.17</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_17" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Chemical</td>
+<td class="gt_row gt_right" headers="stub_1_17 Dim1">−0.32</td>
+<td class="gt_row gt_right" headers="stub_1_17 Dim2">−1.06</td>
+<td class="gt_row gt_right" headers="stub_1_17 Dim3">−0.34</td>
+</tr>
+<tr class="even">
+<td id="stub_1_18" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Licorice</td>
+<td class="gt_row gt_right" headers="stub_1_18 Dim1">0.10</td>
+<td class="gt_row gt_right" headers="stub_1_18 Dim2">−0.26</td>
+<td class="gt_row gt_right" headers="stub_1_18 Dim3">1.07</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_19" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Bread</td>
+<td class="gt_row gt_right" headers="stub_1_19 Dim1">0.46</td>
+<td class="gt_row gt_right" headers="stub_1_19 Dim2">0.51</td>
+<td class="gt_row gt_right" headers="stub_1_19 Dim3">−0.41</td>
+</tr>
+<tr class="even">
+<td id="stub_1_20" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Alcohol</td>
+<td class="gt_row gt_right" headers="stub_1_20 Dim1">0.61</td>
+<td class="gt_row gt_right" headers="stub_1_20 Dim2">−0.79</td>
+<td class="gt_row gt_right" headers="stub_1_20 Dim3">0.75</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_21" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Almond</td>
+<td class="gt_row gt_right" headers="stub_1_21 Dim1">−0.89</td>
+<td class="gt_row gt_right" headers="stub_1_21 Dim2">1.44</td>
+<td class="gt_row gt_right" headers="stub_1_21 Dim3">−3.66</td>
+</tr>
+<tr class="even">
+<td id="stub_1_22" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Caramel</td>
+<td class="gt_row gt_right" headers="stub_1_22 Dim1">1.45</td>
+<td class="gt_row gt_right" headers="stub_1_22 Dim2">1.27</td>
+<td class="gt_row gt_right" headers="stub_1_22 Dim3">−0.02</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_23" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Coal</td>
+<td class="gt_row gt_right" headers="stub_1_23 Dim1">1.07</td>
+<td class="gt_row gt_right" headers="stub_1_23 Dim2">−0.63</td>
+<td class="gt_row gt_right" headers="stub_1_23 Dim3">−0.36</td>
+</tr>
+<tr class="even">
+<td id="stub_1_24" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Unpleasant</td>
+<td class="gt_row gt_right" headers="stub_1_24 Dim1">4.01</td>
+<td class="gt_row gt_right" headers="stub_1_24 Dim2">1.51</td>
+<td class="gt_row gt_right" headers="stub_1_24 Dim3">0.29</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_25" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Soft</td>
+<td class="gt_row gt_right" headers="stub_1_25 Dim1">−1.56</td>
+<td class="gt_row gt_right" headers="stub_1_25 Dim2">2.59</td>
+<td class="gt_row gt_right" headers="stub_1_25 Dim3">0.42</td>
+</tr>
+<tr class="even">
+<td id="stub_1_26" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Pepper</td>
+<td class="gt_row gt_right" headers="stub_1_26 Dim1">0.24</td>
+<td class="gt_row gt_right" headers="stub_1_26 Dim2">−3.05</td>
+<td class="gt_row gt_right" headers="stub_1_26 Dim3">0.65</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_27" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Flower</td>
+<td class="gt_row gt_right" headers="stub_1_27 Dim1">−0.39</td>
+<td class="gt_row gt_right" headers="stub_1_27 Dim2">−0.19</td>
+<td class="gt_row gt_right" headers="stub_1_27 Dim3">0.81</td>
+</tr>
+<tr class="even">
+<td id="stub_1_28" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Fresh</td>
+<td class="gt_row gt_right" headers="stub_1_28 Dim1">−2.51</td>
+<td class="gt_row gt_right" headers="stub_1_28 Dim2">−0.15</td>
+<td class="gt_row gt_right" headers="stub_1_28 Dim3">0.52</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_29" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Red</td>
+<td class="gt_row gt_right" headers="stub_1_29 Dim1">−1.93</td>
+<td class="gt_row gt_right" headers="stub_1_29 Dim2">0.10</td>
+<td class="gt_row gt_right" headers="stub_1_29 Dim3">−0.39</td>
+</tr>
+<tr class="even">
+<td id="stub_1_30" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Fruit</td>
+<td class="gt_row gt_right" headers="stub_1_30 Dim1">−10.63</td>
+<td class="gt_row gt_right" headers="stub_1_30 Dim2">1.11</td>
+<td class="gt_row gt_right" headers="stub_1_30 Dim3">2.40</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_31" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Natural</td>
+<td class="gt_row gt_right" headers="stub_1_31 Dim1">0.05</td>
+<td class="gt_row gt_right" headers="stub_1_31 Dim2">−0.35</td>
+<td class="gt_row gt_right" headers="stub_1_31 Dim3">0.45</td>
+</tr>
+<tr class="even">
+<td id="stub_1_32" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Spicy</td>
+<td class="gt_row gt_right" headers="stub_1_32 Dim1">0.49</td>
+<td class="gt_row gt_right" headers="stub_1_32 Dim2">−1.89</td>
+<td class="gt_row gt_right" headers="stub_1_32 Dim3">1.20</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_33" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Sugar</td>
+<td class="gt_row gt_right" headers="stub_1_33 Dim1">−6.31</td>
+<td class="gt_row gt_right" headers="stub_1_33 Dim2">2.90</td>
+<td class="gt_row gt_right" headers="stub_1_33 Dim3">−1.05</td>
+</tr>
+<tr class="even">
+<td id="stub_1_34" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Hot</td>
+<td class="gt_row gt_right" headers="stub_1_34 Dim1">1.68</td>
+<td class="gt_row gt_right" headers="stub_1_34 Dim2">−2.57</td>
+<td class="gt_row gt_right" headers="stub_1_34 Dim3">1.46</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_35" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Pleasant</td>
+<td class="gt_row gt_right" headers="stub_1_35 Dim1">−1.57</td>
+<td class="gt_row gt_right" headers="stub_1_35 Dim2">0.15</td>
+<td class="gt_row gt_right" headers="stub_1_35 Dim3">−0.63</td>
+</tr>
+<tr class="even">
+<td id="stub_1_36" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Candy</td>
+<td class="gt_row gt_right" headers="stub_1_36 Dim1">−7.19</td>
+<td class="gt_row gt_right" headers="stub_1_36 Dim2">1.60</td>
+<td class="gt_row gt_right" headers="stub_1_36 Dim3">−1.34</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 <section id="représentation-graphique" class="level2" data-number="2.10">
 <h2 data-number="2.10" class="anchored" data-anchor-id="représentation-graphique"><span class="header-section-number">2.10</span> Représentation graphique</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Voir le code R</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beta, <span class="fu">aes</span>(<span class="at">x=</span><span class="fl">1.05</span><span class="sc">*</span>Dim1, <span class="at">y=</span><span class="fl">1.05</span><span class="sc">*</span>Dim2,<span class="at">label=</span><span class="fu">rownames</span>(beta))) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>() <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">data=</span>beta,<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span><span class="dv">0</span>, <span class="at">xend=</span>Dim1, <span class="at">yend=</span>Dim2), <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length=</span><span class="fu">unit</span>(.<span class="dv">1</span>, <span class="st">'cm'</span>)))<span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#theme(element_text(size=10))+</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">paste</span>(<span class="st">"Dim1="</span>,<span class="fu">round</span>(resMds<span class="sc">@</span>Percent[<span class="dv">1</span>]<span class="sc">*</span><span class="dv">100</span>,<span class="dv">3</span>),<span class="st">"%"</span>))<span class="sc">+</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">paste</span>(<span class="st">"Dim2="</span>,<span class="fu">round</span>(resMds<span class="sc">@</span>Percent[<span class="dv">2</span>]<span class="sc">*</span><span class="dv">100</span>,<span class="dv">3</span>),<span class="st">"%"</span>))<span class="sc">+</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="fu">paste</span>(<span class="st">"MDS, stress="</span>,<span class="fu">round</span>(resMds<span class="sc">@</span>Stress,<span class="dv">3</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beta, <span class="fu">aes</span>(<span class="at">x=</span><span class="fl">1.05</span><span class="sc">*</span>Dim1, <span class="at">y=</span><span class="fl">1.05</span><span class="sc">*</span>Dim2,<span class="at">label=</span><span class="fu">rownames</span>(beta))) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>() <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">data=</span>beta,<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span><span class="dv">0</span>, <span class="at">xend=</span>Dim1, <span class="at">yend=</span>Dim2), <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length=</span><span class="fu">unit</span>(.<span class="dv">1</span>, <span class="st">'cm'</span>)))<span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#theme(element_text(size=10))+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">paste</span>(<span class="st">"Dim1="</span>,<span class="fu">round</span>(config<span class="sc">$</span>explain_var[<span class="dv">1</span>]<span class="sc">*</span><span class="dv">100</span>,<span class="dv">3</span>),<span class="st">"%"</span>))<span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">paste</span>(<span class="st">"Dim2="</span>,<span class="fu">round</span>(config<span class="sc">$</span>explain_var[<span class="dv">2</span>]<span class="sc">*</span><span class="dv">100</span>,<span class="dv">3</span>),<span class="st">"%"</span>))<span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="fu">paste</span>(<span class="st">"MDS, stress="</span>,<span class="fu">round</span>(config<span class="sc">$</span>stress,<span class="dv">3</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chapitre1_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 
 
@@ -3070,243 +4912,236 @@ window.Quarto = {
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
     }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
     });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
-          }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
         }
       }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
-        },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
     }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
-        }
-      });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
     }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
-        }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
-            }
-          }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
-          }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
-          }
-          return note.innerHTML;
-        }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
       } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
         }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
-        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
       }
     }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
-        }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
-            }
-          } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
-            });
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
           }
         } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
+          // See if we can fetch this
+          fetch(url.split('#')[0])
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
+            const note = htmlDoc.getElementById(id);
             if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
+              const html = processXRef(id, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -3314,161 +5149,185 @@ window.Quarto = {
             instance.show();
           });
         }
-      }, function(instance) {
-      });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
       } else {
-        return undefined;
-      }
-    };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
             }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
         });
       }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
     }
-  });
-  </script>
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./index.html" class="pagination-link" aria-label="Introduction">

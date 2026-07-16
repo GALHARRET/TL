@@ -1,4 +1,4 @@
-#  Tri libre
+# Tri libre
 
 Pour les étudiants utilisant leur ordinateur personnel il faut installer le package TeachFreeSortR :
 
@@ -38,9 +38,9 @@ df |>
 
 On note $D^{(n)}=(d^{(n)}_{i,j})_{i,j}$ la matrice de dissimilarités obtenue à partir de la partition du $n$-ième individu. On a
 
-- $d^{(n)}_{i,j}=0$ si $i,j$ sont dans la même partition,
+-   $d^{(n)}_{i,j}=0$ si $i,j$ sont dans la même partition,
 
-- $d^{(n)}_{i,j}=1$ sinon.
+-   $d^{(n)}_{i,j}=1$ sinon.
 
 ***Remarque*** La matrice $D^{(n)}$ est une matrice symétrique dont la diagonale est nulle.
 
@@ -61,11 +61,11 @@ tab |> as.data.frame() |>
 
 ## Matrice de dissimilarités à l'échelle du panel
 
-- On ajoute toutes les matrices de dissimilarités individuelles. On obtient la matrice $D$ de coefficients : $$\delta_{i,j}=\sum_{n=1}^N d^{(n)}_{i,j}$$
+-   On ajoute toutes les matrices de dissimilarités individuelles. On obtient la matrice $D$ de coefficients : $$\delta_{i,j}=\sum_{n=1}^N d^{(n)}_{i,j}$$
 
-- Cette matrice est symétrique et sa diagonale est nulle.
+-   Cette matrice est symétrique et sa diagonale est nulle.
 
-- Tous les coefficients de cette matrice sont des entiers inférieurs ou égaux à $N$.
+-   Tous les coefficients de cette matrice sont des entiers inférieurs ou égaux à $N$.
 
 ### Retour sur l'exemple
 
@@ -89,9 +89,9 @@ On considère $N$ points $x_1,...,x_N$ dans un espace de dimension $P$ caractér
 
 Cela suppose :
 
-- l'existence de variables latentes (ie qui permettent de résumer des dissimilarités entre produits)
+-   l'existence de variables latentes (ie qui permettent de résumer des dissimilarités entre produits)
 
-- le choix d'un indice de qualité de la projection des dissimilarités dans l'espace latent ($\leadsto$ ***S : Fonction de coût appelée Stress***). Le but sera de trouver $y_1,...,y_N$ tels que $S(y_1,...,y_N)$ est minimale.
+-   le choix d'un indice de qualité de la projection des dissimilarités dans l'espace latent ($\leadsto$ ***S : Fonction de coût appelée Stress***). Le but sera de trouver $y_1,...,y_N$ tels que $S(y_1,...,y_N)$ est minimale.
 
 ### MDS Métrique
 
@@ -141,11 +141,11 @@ mds_plot(df,k=3,n_boot = 0)
 
 ## Ellipses de confiance
 
-- On se pose la question de la stabilité de la configuration. D'autres individus proposeraient d'autres partitions $\leadsto$ autre configuration.
+-   On se pose la question de la stabilité de la configuration. D'autres individus proposeraient d'autres partitions $\leadsto$ autre configuration.
 
-- Pseudo-individus à partir des individus de l'échantillon (Bootstrap) : on tire des individus avec remise dans l'échantillon et on construit la configuration obtenue (en général $B=500$ tirages).
+-   Pseudo-individus à partir des individus de l'échantillon (Bootstrap) : on tire des individus avec remise dans l'échantillon et on construit la configuration obtenue (en général $B=500$ tirages).
 
-- Construction d'ellipses de confiance à partir de ces $B=500$ configurations (par défaut dans la fonction mds_plot).
+-   Construction d'ellipses de confiance à partir de ces $B=500$ configurations (par défaut dans la fonction mds_plot).
 
 ```{r}
 mds_plot(df,k=3)
@@ -156,52 +156,62 @@ mds_plot(df,k=3,dim=c(1,3))
 
 On propose aux 31 sujets une liste de 36 descripteurs pour les 16 produits considérés. On obtient la table de contingence suivante :
 
-```{r echo=F,eval=F}
-data("AromaTerms")
-ia=as.data.frame(AromaTerms)
-ft_1 <- flextable(ia%>% rownames_to_column("name"))
-ft_1 <- set_table_properties(ft_1, 
-                             opts_html = list(
-                               extra_css = ".tabwid tbody tr > :first-child {position: sticky;z-index: 1;left: 0;background: #ddd;}",
-                               scroll = list(height="500px")))
-ft_1
+```{r echo=F}
+
+df2<-read.csv("AromaTerms.csv")
+df2 |>
+  gt(rownames_to_stub = TRUE) |>
+  tab_header(title = "Données aditionnelles", subtitle = "caractérisation des 16 produits ") |>
+  fmt_number(columns = where(is.numeric), decimals = 2) |>
+  #cols_label(colonne1 = "Nom affiché") |>
+  tab_style(
+    style = cell_fill(color = "lightblue"),
+    locations = cells_column_labels()
+  )
 ```
 
 ## Caractérisation des axes latents
 
-- On effectue la régression de chacun des descripteurs sur les composantes de la MDS.
+-   On effectue la régression de chacun des descripteurs sur les composantes de la MDS.
 
-- Les coefficients de regression seront utilisés comme coordonnées dans les plans factoriels.
+-   Les coefficients de regression seront utilisés comme coordonnées dans les plans factoriels.
 
 ***Exemple***
 
 Descripteur Acide :
 
-```{r eval=F}
-beta<-data.frame(matrix(NA,nrow=dim(ia)[2],ncol=dim(config)[2]))
-
+```{r}
+k=3
+df2<-read.csv("AromaTerms.csv",row.names=1)
+config<-compute_mds(DissTotal,k=k)
+beta<-data.frame(matrix(NA,nrow=dim(df2)[2],ncol=dim(config$points)[2]))
+rownames(beta)<-colnames(df2)
+colnames(beta)[1:k]<-paste("Dim",1:k,sep="")
 for(i in 1:dim(beta)[1]){
-  beta[i,]<-coef(lm(AromaTerms[,i]~as.matrix(config)))[-1]
+  beta[i,]<-coef(lm(df2[,i]~as.matrix(config$points)))[-1]
 }
-rownames(beta)<-colnames(ia)
-colnames(beta)[1:ndim]<-paste("Dim",1:ndim,sep="")
+
 ```
 
 On obtient :
 
-```{r echo=F,eval=F}
-flextable(beta%>% rownames_to_column("name"))
+```{r echo=F}
+beta |>
+  gt(rownames_to_stub = TRUE)|>
+  tab_header(title = "Coefficients de régression", subtitle = "caractérisation des Dimensions ") |>
+  fmt_number(columns = where(is.numeric), decimals = 2) 
 ```
 
 ## Représentation graphique
 
-```{r eval=F}
+```{r}
+library(ggrepel)
 ggplot(beta, aes(x=1.05*Dim1, y=1.05*Dim2,label=rownames(beta))) +
-  geom_text() +
+  geom_text_repel() +
   geom_segment(data=beta,aes(x=0, y=0, xend=Dim1, yend=Dim2), arrow = arrow(length=unit(.1, 'cm')))+
   theme_minimal()+
   #theme(element_text(size=10))+
-  xlab(paste("Dim1=",round(resMds@Percent[1]*100,3),"%"))+
-  ylab(paste("Dim2=",round(resMds@Percent[2]*100,3),"%"))+
-  ggtitle(paste("MDS, stress=",round(resMds@Stress,3)))
+  xlab(paste("Dim1=",round(config$explain_var[1]*100,3),"%"))+
+  ylab(paste("Dim2=",round(config$explain_var[2]*100,3),"%"))+
+  ggtitle(paste("MDS, stress=",round(config$stress,3)))
 ```
