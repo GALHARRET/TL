@@ -1,6 +1,6 @@
 ```{r echo=F}
 suppressPackageStartupMessages(library(tidyverse))
-suppressPackageStartupMessages(library(flextable))
+suppressPackageStartupMessages(library(gt))
 suppressPackageStartupMessages(library(gridExtra))
 library(TeachFreeSortR)
 df<-read.csv("aroma.csv",header = T,sep=";",row.names=1)
@@ -12,42 +12,35 @@ df<-read.csv("aroma.csv",header = T,sep=";",row.names=1)
 
 -   Cela nécessite de définir une notion de proximité entre partitions.
 
-## Mesure d'accord entre deux partitions
+## Mesure d'accord entre deux individus
 
-On demande à 2 participants de partager en groupes 5 produits numérotés $\{1,2,3,4,5\}$ On obtient les deux partitions suivantes : $P_1=\{ \{1,2,3\},\{4,5\} \}$ et $P_2=\{ \{1,2\},\{3,4,5\} \}$. On va mesurer l'accord entre ces deux partitions en regardant si chaque paire de produits est groupé dans $P_1$ (Gr P1), séparé dans $P_1$ (sep P1). De même dans $P_2.$
+On regarde les partitions données par les 2 premiers participants de l'étude précédente. On va mesurer l'accord entre ces deux partitions en regardant le degré d'accord entre les 2 individus pour chaque paire de produits. Les deux individus seront d'accord pour la paire de produit \$(P_i,P_j)\$ lorsque ils auront mis les deux produits dans le même groupe ou bien qu'ils l'auront mis dans deux groupes différents.
 
-```{r echo=F}
-P1=c(1,1,1,2,2)
-P2=c(1,1,2,2,2)
-ex=as.data.frame(rbind(P1,P2))
-colnames(ex)=paste("Produit",1:5)
-x<-c()
-for(i in 1:(length(P1)-1)){
-  for(j in (i+1):length(P1)){
-    x<-c(x,sum(P1[i]==P1[j])+2*sum(P2[i]==P2[j]))
-  }
-}
-# Table de contingence
-tab<-data.frame(matrix(table(x),nrow=2))
-rownames(tab)<-c("Gr P1","Sep P1")
-colnames(tab)<-c("Gr P2","Sep P2")
-flextable(ex%>% rownames_to_column("name"))
-flextable(tab%>% rownames_to_column("name"))
+Pour cela on compare les matrices de dissimilarité des deux individus :
+
+```{r}
+part<-dissim_partition(df)
+part$S1[1:4,1:4]
+part$S2[1:4,1:4]
 ```
 
--   Courcoux et al. (2014) définissent le Rand Index $RI(P_1,P_2)=\dfrac{a+d}{P(P-1)/2}$ où $a+d$ est le nombre d'accord entre $P_1,P_2$ (ie lorsqu'elles regroupent ou qu'elles séparent les deux produits).
+-   Courcoux et al. (2014) définissent le Rand Index $RI(P_1,P_2)=\dfrac{a+d}{P(P-1)/2}$ où $a+d$ est le nombre d'accord entre les deux individus (ie lorsqu'ils regroupent ou qu'ils séparent les deux produits).
 
 -   On a $0\leq RI(P_1,P_2) \leq 1$ (0 désaccord total et 1 accord total).
 
 La fonction ***RandIndex*** du package FreeSortR permet d'effectuer ce calcul :
 
 ```{r echo=T}
-adjusted_rand_index(P1,P2)
+P1<-part$S1
+P2<-part$S2
+rand_index(P1,P2)
 ```
 
 ## Inconvénient
 
-Il augmente en moyenne lorsque le nombre $N$ de sujets augmente. La solution est de remplacer $RI$ par $$
+Il augmente en moyenne lorsque le nombre $N$ de sujets augmente.
+
+La solution est de remplacer $RI$ par $$
 ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
 $$
 
@@ -59,7 +52,7 @@ où $\overline{RI}$ est la moyenne du $RI$ pour 2 partitions dont le consensus n
 2.  $ARI(P_1,P_2)=1$ lorsque le consensus est parfait (ie les partitions sont identiques).
 
 ```{r echo=T}
-RandIndex(P1,P2)$AdjustedRand
+adjusted_rand_index(P1,P2)
 ```
 
 ## Mesure de consensus basé sur $ARI$
@@ -71,7 +64,7 @@ RandIndex(P1,P2)$AdjustedRand
 -   Cet algorithme est sensible au choix de la première partition. Plusieurs choix sont proposés dans ***FreeSorteR*** on choisira :
 
 ```{r}
-C<<-consensus_partition(df,type="fusion")
+C<-consensus_partition(df,type="fusion")
 ```
 
 ## Résultat pour l'exemple
@@ -99,16 +92,12 @@ $$ où le sujet $S_i$ propose la partition $P_i.$
 
 On peut alors réaliser une classification ascendante hierarchique avec cette distance :
 
-```{r }
-i=j=1
-d_ARI<-function(df,i,j){
-  return(sqrt(1-RandIndex(df[,i],df[,j])$AdjustedRand))
-}
+```{r}
 N<-dim(df)[2]
 M<-matrix(NA,nrow=N,ncol=N)
 for(i in 1:N){
   for(j in 1:N){
-    M[i,j]<-d_ARI(df,i,j)
+    M[i,j]<-ari_distance(df,i,j)
   }
 }
 
@@ -127,45 +116,12 @@ gr<-cutree(res,2)
 Ces groupes sont déséquilibrés et constitués de
 
 ```{r}
-flextable(as.data.frame(table(gr)))
+gr
 ```
 
 On peut ainsi mettre en évidence le consensus pour chacun de ces deux groupes :
 
 ```{r}
 df1<-df[,gr==1]
-ndim=3
-tl1<-SortingPartition(df1)
-resMds1<-MdsSort(tl1,ndim=ndim)
-config1<-getConfig(resMds1)
-cons1<-ConsensusPartition(tl1,ngroups=0)
-config1=getConfig(resMds1)
-colnames(config1)=paste("Dim",1:ndim,sep="")
-Consensus1=as.factor(cons1$Consensus)
-p1=ggplot(config1,aes(x=Dim1,y=Dim2,label=rownames(config1),color=Consensus1))+
-  geom_text()+
-  xlab(paste("Dim1=",round(resMds1@Percent[1]*100,3),"%"))+
-  ylab(paste("Dim2=",round(resMds1@Percent[2]*100,3),"%"))+
-  labs(
-    title=paste("MDS, stress=",round(resMds1@Stress,3),", N=",sum(gr==1),sep=""),
-    subtitle = paste("Consensus=",round(cons1$Crit,3),", k gr=",max(cons1$Consensus)),sep="")+
-  theme_minimal()+theme(legend.position = "none")
-
-df1<-df[,gr==2]
-tl1<-SortingPartition(df1)
-resMds1<-MdsSort(tl1,ndim=ndim)
-config1<-getConfig(resMds1)
-cons1<-ConsensusPartition(tl1,ngroups=0)
-config1=getConfig(resMds1)
-colnames(config1)=paste("Dim",1:ndim,sep="")
-Consensus1=as.factor(cons1$Consensus)
-p2=ggplot(config1,aes(x=Dim1,y=Dim2,label=rownames(config1),color=Consensus1))+
-  geom_text()+
-  xlab(paste("Dim1=",round(resMds1@Percent[1]*100,3),"%"))+
-  ylab(paste("Dim2=",round(resMds1@Percent[2]*100,3),"%"))+
-  labs(
-    title=paste("MDS, stress=",round(resMds1@Stress,3),", N=",sum(gr==2),sep=""),
-    subtitle = paste("Consensus=",round(cons1$Crit,3),", k gr=",max(cons1$Consensus)),sep="")+
-  theme_minimal()+theme(legend.position = "none")
-grid.arrange(p1,p2,ncol=2)
+mds_plot_consensus(df1,partition_type="fusion")
 ```

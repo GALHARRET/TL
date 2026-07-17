@@ -114,7 +114,7 @@
     "href": "chapitre2.html",
     "title": "3  Partition consensuelle",
     "section": "",
-    "text": "3.1 Mesure d’accord entre deux partitions\nOn demande à 2 participants de partager en groupes 5 produits numérotés \\(\\{1,2,3,4,5\\}\\) On obtient les deux partitions suivantes : \\(P_1=\\{ \\{1,2,3\\},\\{4,5\\} \\}\\) et \\(P_2=\\{ \\{1,2\\},\\{3,4,5\\} \\}\\). On va mesurer l’accord entre ces deux partitions en regardant si chaque paire de produits est groupé dans \\(P_1\\) (Gr P1), séparé dans \\(P_1\\) (sep P1). De même dans \\(P_2.\\)\nnameProduit 1Produit 2Produit 3Produit 4Produit 5P111122P211222\n\n\nnameGr P2Sep P2Gr P142Sep P122\nLa fonction RandIndex du package FreeSortR permet d’effectuer ce calcul :\nVoir le code R\nRandIndex(P1,P2)$Rand\n\n\n[1] 0.6",
+    "text": "3.1 Mesure d’accord entre deux individus\nOn regarde les partitions données par les 2 premiers participants de l’étude précédente. On va mesurer l’accord entre ces deux partitions en regardant le degré d’accord entre les 2 individus pour chaque paire de produits. Les deux individus seront d’accord pour la paire de produit $(P_i,P_j)$ lorsque ils auront mis les deux produits dans le même groupe ou bien qu’ils l’auront mis dans deux groupes différents.\nPour cela on compare les matrices de dissimilarité des deux individus :\nVoir le code R\npart&lt;-dissim_partition(df)\npart$S1[1:4,1:4]\n\n\n           Lemon Grapefruit Pineapple Pear\nLemon          0          0         1    0\nGrapefruit     0          0         1    0\nPineapple      1          1         0    1\nPear           0          0         1    0\n\n\nVoir le code R\npart$S2[1:4,1:4]\n\n\n           Lemon Grapefruit Pineapple Pear\nLemon          0          1         0    0\nGrapefruit     1          0         1    1\nPineapple      0          1         0    0\nPear           0          1         0    0\nLa fonction RandIndex du package FreeSortR permet d’effectuer ce calcul :\nVoir le code R\nP1&lt;-part$S1\nP2&lt;-part$S5\nrand_index(P1,P2)\n\n\n[1] 1\n\n\nVoir le code R\nFreeSortR::RandIndex(df$S1,df$S5)\n\n\n$Rand\n[1] 0.7416667\n\n$AdjustedRand\n[1] 0.05102041",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Partition consensuelle</span>"
     ]
@@ -134,7 +134,7 @@
     "href": "chapitre2.html#inconvénient",
     "title": "3  Partition consensuelle",
     "section": "3.2 Inconvénient",
-    "text": "3.2 Inconvénient\nIl augmente en moyenne lorsque le nombre \\(N\\) de sujets augmente. La solution est de remplacer \\(RI\\) par \\[\nARI(P_1,P_2)=\\dfrac{RI(P_1,P_2)-\\overline{RI}}{1-\\overline{RI}}\n\\]\noù \\(\\overline{RI}\\) est la moyenne du \\(RI\\) pour 2 partitions dont le consensus n’est dû qu’au hasard.\nConséquences\n\n\\(ARI(P_1,P_2)=0\\) lorsque le consensus n’est dû qu’au hasard,\n\\(ARI(P_1,P_2)=1\\) lorsque le consensus est parfait (ie les partitions sont identiques).\n\n\n\nVoir le code R\nRandIndex(P1,P2)$AdjustedRand\n\n\n[1] 0.1666667",
+    "text": "3.2 Inconvénient\nIl augmente en moyenne lorsque le nombre \\(N\\) de sujets augmente.\nLa solution est de remplacer \\(RI\\) par \\[\nARI(P_1,P_2)=\\dfrac{RI(P_1,P_2)-\\overline{RI}}{1-\\overline{RI}}\n\\]\noù \\(\\overline{RI}\\) est la moyenne du \\(RI\\) pour 2 partitions dont le consensus n’est dû qu’au hasard.\nConséquences\n\n\\(ARI(P_1,P_2)=0\\) lorsque le consensus n’est dû qu’au hasard,\n\\(ARI(P_1,P_2)=1\\) lorsque le consensus est parfait (ie les partitions sont identiques).\n\n\n\nVoir le code R\nadjusted_rand_index(P1,P2)\n\n\n[1] 0.1774105",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Partition consensuelle</span>"
     ]
@@ -144,7 +144,7 @@
     "href": "chapitre2.html#mesure-de-consensus-basé-sur-ari",
     "title": "3  Partition consensuelle",
     "section": "3.3 Mesure de consensus basé sur \\(ARI\\)",
-    "text": "3.3 Mesure de consensus basé sur \\(ARI\\)\n\nOn cherche une partition \\(P\\) telle que la moyenne des \\(ARI\\) de chaque sujet avec cette partition est maximale c’est à dire \\(C_M(P)=\\frac 1{N}\\sum_{n=1}^N ARI(P,P_n)\\) maximale.\nOn procède de façon itérative en fixant le nombre \\(K\\) de classes dans la partition consensuelle. On choisit la valeur de \\(K\\) pour laquelle \\(C_M(P)\\) est maximal.\nCet algorithme est sensible au choix de la première partition. Plusieurs choix sont proposés dans FreeSorteR on choisira :\n\n\n\nVoir le code R\ncons=ConsensusPartition(tl,ngroups=0,type=\"fusion\")\n\n\n\nFusion algorithm. May be time consuming.",
+    "text": "3.3 Mesure de consensus basé sur \\(ARI\\)\n\nOn cherche une partition \\(P\\) telle que la moyenne des \\(ARI\\) de chaque sujet avec cette partition est maximale c’est à dire \\(C_M(P)=\\frac 1{N}\\sum_{n=1}^N ARI(P,P_n)\\) maximale.\nOn procède de façon itérative en fixant le nombre \\(K\\) de classes dans la partition consensuelle. On choisit la valeur de \\(K\\) pour laquelle \\(C_M(P)\\) est maximal.\nCet algorithme est sensible au choix de la première partition. Plusieurs choix sont proposés dans FreeSorteR on choisira :\n\n\n\nVoir le code R\nC&lt;-consensus_partition(df,type=\"fusion\")\n\n\nFusion algorithm. May be time consuming.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Partition consensuelle</span>"
     ]
@@ -154,7 +154,7 @@
     "href": "chapitre2.html#résultat-pour-lexemple",
     "title": "3  Partition consensuelle",
     "section": "3.4 Résultat pour l’exemple",
-    "text": "3.4 Résultat pour l’exemple\nPartition en 7 classes avec \\(C_M(P)=0.308\\)\n\n\nname.Lemon1Grapefruit1Pineapple1Pear1Honey2Butter3Grilledbread2Grilledhazelnut2Strawberry1Raspberry1Cherry4Blackcurrant3Greenpepper5Smoked6Pepper7Licorice6",
+    "text": "3.4 Résultat pour l’exemple\nPartition en 7 classes avec \\(C_M(P)=0.308\\)",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Partition consensuelle</span>"
     ]
@@ -164,7 +164,7 @@
     "href": "chapitre2.html#représentation-de-la-partition-consensuelle-sur-le-plan-latent",
     "title": "3  Partition consensuelle",
     "section": "3.5 Représentation de la partition consensuelle sur le plan latent :",
-    "text": "3.5 Représentation de la partition consensuelle sur le plan latent :\n\n\nVoir le code R\nconfig=getConfig(resMds)\ncolnames(config)=paste(\"Dim\",1:3,sep=\"\")\nConsensus=as.factor(cons$Consensus)\nggplot(config,aes(x=Dim1,y=Dim2,label=rownames(config),color=Consensus))+\n  geom_text()+\n  xlab(paste(\"Dim1=\",round(resMds@Percent[1]*100,1),\"%\"))+\n  ylab(paste(\"Dim2=\",round(resMds@Percent[2]*100,1),\"%\"))+\n  ggtitle(paste(\"MDS, stress=\",round(resMds@Stress,3)))+\n  theme_minimal()+theme(legend.position = \"none\")",
+    "text": "3.5 Représentation de la partition consensuelle sur le plan latent :\n\n\nVoir le code R\nmds_plot_consensus(df,partition_type=\"fusion\")\n\n\nFusion algorithm. May be time consuming.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Partition consensuelle</span>"
     ]
@@ -174,7 +174,7 @@
     "href": "chapitre2.html#classification-des-sujets",
     "title": "3  Partition consensuelle",
     "section": "3.6 Classification des sujets",
-    "text": "3.6 Classification des sujets\nL’\\(ARI\\) permet de définir une distance entre les sujets, \\[\nd_{ARI}(S_i,S_j)=\\sqrt{1-ARI(P_i,P_j)}\n\\] où le sujet \\(S_i\\) propose la partition \\(P_i.\\)\n\n3.6.1 CAH avec d_ARI\nOn peut alors réaliser une classification ascendante hierarchique avec cette distance :\n\n\nVoir le code R\ni=j=1\nd_ARI&lt;-function(df,i,j){\n  return(sqrt(1-RandIndex(df[,i],df[,j])$AdjustedRand))\n}\nN&lt;-dim(df)[2]\nM&lt;-matrix(NA,nrow=N,ncol=N)\nfor(i in 1:N){\n  for(j in 1:N){\n    M[i,j]&lt;-d_ARI(df,i,j)\n  }\n}\n\ndd &lt;- as.dist(M)\n\nres&lt;-hclust(dd,method=\"ward.D2\")\nplot(res,hang=-1,ylim=c(0,1.5))\n\n\n\n\n\n\n\n\n\nOn choisit de former deux groupes d’individus :\n\n\nVoir le code R\ngr&lt;-cutree(res,2)\n\n\nCes groupes sont déséquilibrés et constitués de\n\n\nVoir le code R\nflextable(as.data.frame(table(gr)))\n\n\ngrFreq12427\n\n\nOn peut ainsi mettre en évidence le consensus pour chacun de ces deux groupes :\n\n\nVoir le code R\ndf1&lt;-df[,gr==1]\nndim=3\ntl1&lt;-SortingPartition(df1)\nresMds1&lt;-MdsSort(tl1,ndim=ndim)\nconfig1&lt;-getConfig(resMds1)\ncons1&lt;-ConsensusPartition(tl1,ngroups=0)\nconfig1=getConfig(resMds1)\ncolnames(config1)=paste(\"Dim\",1:ndim,sep=\"\")\nConsensus1=as.factor(cons1$Consensus)\np1=ggplot(config1,aes(x=Dim1,y=Dim2,label=rownames(config1),color=Consensus1))+\n  geom_text()+\n  xlab(paste(\"Dim1=\",round(resMds1@Percent[1]*100,3),\"%\"))+\n  ylab(paste(\"Dim2=\",round(resMds1@Percent[2]*100,3),\"%\"))+\n  labs(\n    title=paste(\"MDS, stress=\",round(resMds1@Stress,3),\", N=\",sum(gr==1),sep=\"\"),\n    subtitle = paste(\"Consensus=\",round(cons1$Crit,3),\", k gr=\",max(cons1$Consensus)),sep=\"\")+\n  theme_minimal()+theme(legend.position = \"none\")\n\ndf1&lt;-df[,gr==2]\ntl1&lt;-SortingPartition(df1)\nresMds1&lt;-MdsSort(tl1,ndim=ndim)\nconfig1&lt;-getConfig(resMds1)\ncons1&lt;-ConsensusPartition(tl1,ngroups=0)\nconfig1=getConfig(resMds1)\ncolnames(config1)=paste(\"Dim\",1:ndim,sep=\"\")\nConsensus1=as.factor(cons1$Consensus)\np2=ggplot(config1,aes(x=Dim1,y=Dim2,label=rownames(config1),color=Consensus1))+\n  geom_text()+\n  xlab(paste(\"Dim1=\",round(resMds1@Percent[1]*100,3),\"%\"))+\n  ylab(paste(\"Dim2=\",round(resMds1@Percent[2]*100,3),\"%\"))+\n  labs(\n    title=paste(\"MDS, stress=\",round(resMds1@Stress,3),\", N=\",sum(gr==2),sep=\"\"),\n    subtitle = paste(\"Consensus=\",round(cons1$Crit,3),\", k gr=\",max(cons1$Consensus)),sep=\"\")+\n  theme_minimal()+theme(legend.position = \"none\")\ngrid.arrange(p1,p2,ncol=2)",
+    "text": "3.6 Classification des sujets\nL’\\(ARI\\) permet de définir une distance entre les sujets, \\[\nd_{ARI}(S_i,S_j)=\\sqrt{1-ARI(P_i,P_j)}\n\\] où le sujet \\(S_i\\) propose la partition \\(P_i.\\)\n\n3.6.1 CAH avec d_ARI\nOn peut alors réaliser une classification ascendante hierarchique avec cette distance :\n\n\nVoir le code R\nN&lt;-dim(df)[2]\nM&lt;-matrix(NA,nrow=N,ncol=N)\nfor(i in 1:N){\n  for(j in 1:N){\n    M[i,j]&lt;-ari_distance(df,i,j)\n  }\n}\n\ndd &lt;- as.dist(M)\n\nres&lt;-hclust(dd,method=\"ward.D2\")\nplot(res,hang=-1,ylim=c(0,1.5))\n\n\n\n\n\n\n\n\n\nOn choisit de former deux groupes d’individus :\n\n\nVoir le code R\ngr&lt;-cutree(res,2)\n\n\nCes groupes sont déséquilibrés et constitués de\n\n\nVoir le code R\ngr\n\n\n [1] 1 1 1 1 1 2 1 1 2 2 1 1 1 1 1 1 1 1 1 1 2 2 1 1 2 2 1 1 1\n\n\nOn peut ainsi mettre en évidence le consensus pour chacun de ces deux groupes :\n\n\nVoir le code R\ndf1&lt;-df[,gr==1]\nmds_plot_consensus(df1,partition_type=\"fusion\")\n\n\nFusion algorithm. May be time consuming.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Partition consensuelle</span>"
     ]
@@ -247,6 +247,16 @@
     "text": "1.3 Inconvénients\n\nDépendant de l’espace produit\nImpossible d’agréger les données de plusieurs études (facilement)\nBesoin d’informations descriptives additionnelles pour comprendre l’espace produit",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "chapitre2.html#mesure-daccord-entre-deux-individus",
+    "href": "chapitre2.html#mesure-daccord-entre-deux-individus",
+    "title": "3  Partition consensuelle",
+    "section": "",
+    "text": "Courcoux et al. (2014) définissent le Rand Index \\(RI(P_1,P_2)=\\dfrac{a+d}{P(P-1)/2}\\) où \\(a+d\\) est le nombre d’accord entre les deux individus (ie lorsqu’ils regroupent ou qu’ils séparent les deux produits).\nOn a \\(0\\leq RI(P_1,P_2) \\leq 1\\) (0 désaccord total et 1 accord total).",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Partition consensuelle</span>"
     ]
   }
 ]
