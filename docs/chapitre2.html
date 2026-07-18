@@ -294,23 +294,10 @@ Pear           0          1         0    0</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Voir le code R</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>P1<span class="ot">&lt;-</span>part<span class="sc">$</span>S1</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>P2<span class="ot">&lt;-</span>part<span class="sc">$</span>S5</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rand_index</span>(P1,P2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rand_index</span>(df<span class="sc">$</span>S1,df<span class="sc">$</span>S2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1</code></pre>
-</div>
-<details class="code-fold">
-<summary>Voir le code R</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>FreeSortR<span class="sc">::</span><span class="fu">RandIndex</span>(df<span class="sc">$</span>S1,df<span class="sc">$</span>S5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>$Rand
-[1] 0.7416667
-
-$AdjustedRand
-[1] 0.05102041</code></pre>
+<pre><code>[1] 0.7083333</code></pre>
 </div>
 </div>
 </section>
@@ -329,10 +316,10 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
 <div class="cell">
 <details class="code-fold">
 <summary>Voir le code R</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">adjusted_rand_index</span>(P1,P2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">adjusted_rand_index</span>(df<span class="sc">$</span>S1,df<span class="sc">$</span>S2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1774105</code></pre>
+<pre><code>[1] 0.04545455</code></pre>
 </div>
 </div>
 </section>
@@ -346,7 +333,7 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
 <div class="cell">
 <details class="code-fold">
 <summary>Voir le code R</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>C<span class="ot">&lt;-</span><span class="fu">consensus_partition</span>(df,<span class="at">type=</span><span class="st">"fusion"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>C<span class="ot">&lt;-</span><span class="fu">consensus_partition</span>(df,<span class="at">type=</span><span class="st">"fusion"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Fusion algorithm. May be time consuming.</code></pre>
@@ -358,23 +345,23 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
 <p>Partition en 7 classes avec <span class="math inline">\(C_M(P)=0.308\)</span></p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="oqyjdewkzi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#oqyjdewkzi table {
+<div id="iqdxrcwttq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#iqdxrcwttq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#oqyjdewkzi thead, #oqyjdewkzi tbody, #oqyjdewkzi tfoot, #oqyjdewkzi tr, #oqyjdewkzi td, #oqyjdewkzi th {
+#iqdxrcwttq thead, #iqdxrcwttq tbody, #iqdxrcwttq tfoot, #iqdxrcwttq tr, #iqdxrcwttq td, #iqdxrcwttq th {
   border-style: none;
 }
 
-#oqyjdewkzi p {
+#iqdxrcwttq p {
   margin: 0;
   padding: 0;
 }
 
-#oqyjdewkzi .gt_table {
+#iqdxrcwttq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -400,12 +387,12 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
   border-left-color: #D3D3D3;
 }
 
-#oqyjdewkzi .gt_caption {
+#iqdxrcwttq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#oqyjdewkzi .gt_title {
+#iqdxrcwttq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -417,7 +404,7 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
   border-bottom-width: 0;
 }
 
-#oqyjdewkzi .gt_subtitle {
+#iqdxrcwttq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -429,7 +416,7 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
   border-top-width: 0;
 }
 
-#oqyjdewkzi .gt_heading {
+#iqdxrcwttq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -441,13 +428,13 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
   border-right-color: #D3D3D3;
 }
 
-#oqyjdewkzi .gt_bottom_border {
+#iqdxrcwttq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#oqyjdewkzi .gt_col_headings {
+#iqdxrcwttq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -462,7 +449,7 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
   border-right-color: #D3D3D3;
 }
 
-#oqyjdewkzi .gt_col_heading {
+#iqdxrcwttq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -482,7 +469,7 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
   overflow-x: hidden;
 }
 
-#oqyjdewkzi .gt_column_spanner_outer {
+#iqdxrcwttq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -494,15 +481,15 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
   padding-right: 4px;
 }
 
-#oqyjdewkzi .gt_column_spanner_outer:first-child {
+#iqdxrcwttq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#oqyjdewkzi .gt_column_spanner_outer:last-child {
+#iqdxrcwttq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#oqyjdewkzi .gt_column_spanner {
+#iqdxrcwttq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -514,11 +501,11 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
   width: 100%;
 }
 
-#oqyjdewkzi .gt_spanner_row {
+#iqdxrcwttq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#oqyjdewkzi .gt_group_heading {
+#iqdxrcwttq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -544,7 +531,7 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
   text-align: left;
 }
 
-#oqyjdewkzi .gt_empty_group_heading {
+#iqdxrcwttq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -559,15 +546,15 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
   vertical-align: middle;
 }
 
-#oqyjdewkzi .gt_from_md > :first-child {
+#iqdxrcwttq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#oqyjdewkzi .gt_from_md > :last-child {
+#iqdxrcwttq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#oqyjdewkzi .gt_row {
+#iqdxrcwttq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -586,7 +573,7 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
   overflow-x: hidden;
 }
 
-#oqyjdewkzi .gt_stub {
+#iqdxrcwttq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -599,7 +586,7 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
   padding-right: 5px;
 }
 
-#oqyjdewkzi .gt_stub_row_group {
+#iqdxrcwttq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -613,15 +600,15 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
   vertical-align: top;
 }
 
-#oqyjdewkzi .gt_row_group_first td {
+#iqdxrcwttq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#oqyjdewkzi .gt_row_group_first th {
+#iqdxrcwttq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#oqyjdewkzi .gt_summary_row {
+#iqdxrcwttq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -631,16 +618,16 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
   padding-right: 5px;
 }
 
-#oqyjdewkzi .gt_first_summary_row {
+#iqdxrcwttq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#oqyjdewkzi .gt_first_summary_row.thick {
+#iqdxrcwttq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#oqyjdewkzi .gt_last_summary_row {
+#iqdxrcwttq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -650,7 +637,7 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
   border-bottom-color: #D3D3D3;
 }
 
-#oqyjdewkzi .gt_grand_summary_row {
+#iqdxrcwttq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -660,7 +647,7 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
   padding-right: 5px;
 }
 
-#oqyjdewkzi .gt_first_grand_summary_row {
+#iqdxrcwttq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -670,7 +657,7 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
   border-top-color: #D3D3D3;
 }
 
-#oqyjdewkzi .gt_last_grand_summary_row_top {
+#iqdxrcwttq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -680,11 +667,11 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
   border-bottom-color: #D3D3D3;
 }
 
-#oqyjdewkzi .gt_striped {
+#iqdxrcwttq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#oqyjdewkzi .gt_table_body {
+#iqdxrcwttq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -693,7 +680,7 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
   border-bottom-color: #D3D3D3;
 }
 
-#oqyjdewkzi .gt_footnotes {
+#iqdxrcwttq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -707,7 +694,7 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
   border-right-color: #D3D3D3;
 }
 
-#oqyjdewkzi .gt_footnote {
+#iqdxrcwttq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -716,7 +703,7 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
   padding-right: 5px;
 }
 
-#oqyjdewkzi .gt_sourcenotes {
+#iqdxrcwttq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -730,7 +717,7 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
   border-right-color: #D3D3D3;
 }
 
-#oqyjdewkzi .gt_sourcenote {
+#iqdxrcwttq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -738,72 +725,72 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
   padding-right: 5px;
 }
 
-#oqyjdewkzi .gt_left {
+#iqdxrcwttq .gt_left {
   text-align: left;
 }
 
-#oqyjdewkzi .gt_center {
+#iqdxrcwttq .gt_center {
   text-align: center;
 }
 
-#oqyjdewkzi .gt_right {
+#iqdxrcwttq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#oqyjdewkzi .gt_font_normal {
+#iqdxrcwttq .gt_font_normal {
   font-weight: normal;
 }
 
-#oqyjdewkzi .gt_font_bold {
+#iqdxrcwttq .gt_font_bold {
   font-weight: bold;
 }
 
-#oqyjdewkzi .gt_font_italic {
+#iqdxrcwttq .gt_font_italic {
   font-style: italic;
 }
 
-#oqyjdewkzi .gt_super {
+#iqdxrcwttq .gt_super {
   font-size: 65%;
 }
 
-#oqyjdewkzi .gt_footnote_marks {
+#iqdxrcwttq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#oqyjdewkzi .gt_asterisk {
+#iqdxrcwttq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#oqyjdewkzi .gt_indent_1 {
+#iqdxrcwttq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#oqyjdewkzi .gt_indent_2 {
+#iqdxrcwttq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#oqyjdewkzi .gt_indent_3 {
+#iqdxrcwttq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#oqyjdewkzi .gt_indent_4 {
+#iqdxrcwttq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#oqyjdewkzi .gt_indent_5 {
+#iqdxrcwttq .gt_indent_5 {
   text-indent: 25px;
 }
 
-#oqyjdewkzi .katex-display {
+#iqdxrcwttq .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#oqyjdewkzi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#iqdxrcwttq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -822,7 +809,7 @@ ARI(P_1,P_2)=\dfrac{RI(P_1,P_2)-\overline{RI}}{1-\overline{RI}}
 <div class="cell">
 <details class="code-fold">
 <summary>Voir le code R</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mds_plot_consensus</span>(df,<span class="at">partition_type=</span><span class="st">"fusion"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mds_plot_consensus</span>(df,<span class="at">partition_type=</span><span class="st">"fusion"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Fusion algorithm. May be time consuming.</code></pre>
@@ -847,18 +834,18 @@ d_{ARI}(S_i,S_j)=\sqrt{1-ARI(P_i,P_j)}
 <div class="cell">
 <details class="code-fold">
 <summary>Voir le code R</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>N<span class="ot">&lt;-</span><span class="fu">dim</span>(df)[<span class="dv">2</span>]</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>M<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="cn">NA</span>,<span class="at">nrow=</span>N,<span class="at">ncol=</span>N)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N){</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N){</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    M[i,j]<span class="ot">&lt;-</span><span class="fu">ari_distance</span>(df,i,j)</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>dd <span class="ot">&lt;-</span> <span class="fu">as.dist</span>(M)</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>res<span class="ot">&lt;-</span><span class="fu">hclust</span>(dd,<span class="at">method=</span><span class="st">"ward.D2"</span>)</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res,<span class="at">hang=</span><span class="sc">-</span><span class="dv">1</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">1.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>N<span class="ot">&lt;-</span><span class="fu">dim</span>(df)[<span class="dv">2</span>]</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>M<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="cn">NA</span>,<span class="at">nrow=</span>N,<span class="at">ncol=</span>N)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N){</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N){</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    M[i,j]<span class="ot">&lt;-</span><span class="fu">ari_distance</span>(df,i,j)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>dd <span class="ot">&lt;-</span> <span class="fu">as.dist</span>(M)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>res<span class="ot">&lt;-</span><span class="fu">hclust</span>(dd,<span class="at">method=</span><span class="st">"ward.D2"</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res,<span class="at">hang=</span><span class="sc">-</span><span class="dv">1</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">1.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -872,33 +859,69 @@ d_{ARI}(S_i,S_j)=\sqrt{1-ARI(P_i,P_j)}
 <div class="cell">
 <details class="code-fold">
 <summary>Voir le code R</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>gr<span class="ot">&lt;-</span><span class="fu">cutree</span>(res,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>gr<span class="ot">&lt;-</span><span class="fu">cutree</span>(res,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Ces groupes sont déséquilibrés et constitués de</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Voir le code R</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>gr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(gr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 1 1 1 1 1 2 1 1 2 2 1 1 1 1 1 1 1 1 1 1 2 2 1 1 2 2 1 1 1</code></pre>
+<pre><code>gr
+ 1  2 
+22  7 </code></pre>
 </div>
 </div>
 <p>On peut ainsi mettre en évidence le consensus pour chacun de ces deux groupes :</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Voir le code R</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df1<span class="ot">&lt;-</span>df[,gr<span class="sc">==</span><span class="dv">1</span>]</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mds_plot_consensus</span>(df1,<span class="at">partition_type=</span><span class="st">"fusion"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df1<span class="ot">&lt;-</span>df[,gr<span class="sc">==</span><span class="dv">1</span>]</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>C<span class="ot">&lt;-</span><span class="fu">consensus_partition</span>(df1)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>C<span class="sc">$</span>crit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.339249</code></pre>
+</div>
+<details class="code-fold">
+<summary>Voir le code R</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mds_plot_consensus</span>(df1,<span class="at">consensus=</span>C,<span class="at">n_boot=</span><span class="dv">0</span>,<span class="at">k=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>Fusion algorithm. May be time consuming.</code></pre>
+<pre><code>Ignoring unknown labels:
+• fill : "Consensus group"</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="chapitre2_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Voir le code R</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df2<span class="ot">&lt;-</span>df[,gr<span class="sc">==</span><span class="dv">2</span>]</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>C<span class="ot">&lt;-</span><span class="fu">consensus_partition</span>(df2)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>C<span class="sc">$</span>crit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4525944</code></pre>
+</div>
+<details class="code-fold">
+<summary>Voir le code R</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mds_plot_consensus</span>(df2,<span class="at">partition_type=</span><span class="st">"fusion"</span>,<span class="at">k=</span><span class="dv">3</span>,<span class="at">n_boot=</span><span class="dv">0</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Fusion algorithm. May be time consuming.
+Ignoring unknown labels:
+• fill : "Consensus group"</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chapitre2_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>

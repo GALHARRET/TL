@@ -31,9 +31,7 @@ part$S2[1:4,1:4]
 La fonction ***RandIndex*** du package FreeSortR permet d'effectuer ce calcul :
 
 ```{r echo=T}
-P1<-part$S1
-P2<-part$S2
-rand_index(P1,P2)
+rand_index(df$S1,df$S2)
 ```
 
 ## Inconvénient
@@ -52,7 +50,7 @@ où $\overline{RI}$ est la moyenne du $RI$ pour 2 partitions dont le consensus n
 2.  $ARI(P_1,P_2)=1$ lorsque le consensus est parfait (ie les partitions sont identiques).
 
 ```{r echo=T}
-adjusted_rand_index(P1,P2)
+adjusted_rand_index(df$S1,df$S2)
 ```
 
 ## Mesure de consensus basé sur $ARI$
@@ -116,12 +114,18 @@ gr<-cutree(res,2)
 Ces groupes sont déséquilibrés et constitués de
 
 ```{r}
-gr
+table(gr)
 ```
 
 On peut ainsi mettre en évidence le consensus pour chacun de ces deux groupes :
 
 ```{r}
 df1<-df[,gr==1]
-mds_plot_consensus(df1,partition_type="fusion")
+C<-consensus_partition(df1)
+C$crit
+mds_plot_consensus(df1,consensus=C,n_boot=0,k=3)
+df2<-df[,gr==2]
+C<-consensus_partition(df2)
+C$crit
+mds_plot_consensus(df2,partition_type="fusion",k=3,n_boot=0) 
 ```
